@@ -9,6 +9,7 @@ import styles from './NavBar.module.css';
 import ScrollTop from '../../ui/ScrollTop/ScrollTop';
 import MobileDrawer from '../../dialogs/Drawer/MobileDrawer';
 import {
+  Button,
   Box,
   Divider,
   List,
@@ -21,29 +22,27 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 
 interface Props {
-  links?: { name: string; address: string }[];
+  navLinks: { name: string; url: string }[];
 }
 
-export default function NavBar() {
+export default function NavBar({ navLinks }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const navItems = ['Home', 'About', 'Contact'];
-
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        M. na logo
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+        {navLinks.map((item) => (
+          <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -56,18 +55,29 @@ export default function NavBar() {
       <CssBaseline />
       <AppBar className={styles.navbar}>
         <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Logo
+          </Typography>
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            edge="start"
+            edge="end"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ pr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div">
-            Scroll to see button
-          </Typography>
+
+          <Box
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            className={styles.menu}
+          >
+            {navLinks.map((item) => (
+              <Button key={item.name} sx={{ color: '#a81e47' }}>
+                {item.name}
+              </Button>
+            ))}
+          </Box>
         </Toolbar>
       </AppBar>
       <MobileDrawer
