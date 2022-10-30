@@ -8,21 +8,14 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styles from './NavBar.module.css';
 import ScrollTop from '../../ui/ScrollTop/ScrollTop';
 import MobileDrawer from '../../dialogs/Drawer/MobileDrawer';
-import {
-  Button,
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  IconButton,
-} from '@mui/material';
+import { Button, Box, IconButton } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
+import MobileMenu from '../../menu/MobileMenu/MobileMenu';
+import { Navlinks } from '../../../shared/types';
 
 interface Props {
-  navLinks: { name: string; url: string }[];
+  navLinks: Navlinks;
 }
 
 export default function NavBar({ navLinks }: Props) {
@@ -31,24 +24,6 @@ export default function NavBar({ navLinks }: Props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        M. na logo
-      </Typography>
-      <Divider />
-      <List>
-        {navLinks.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
 
   return (
     <React.Fragment>
@@ -73,7 +48,7 @@ export default function NavBar({ navLinks }: Props) {
             className={styles.menu}
           >
             {navLinks.map((item) => (
-              <Button key={item.name} sx={{ color: '#a81e47' }}>
+              <Button key={item.name} sx={{ color: '#000000' }}>
                 {item.name}
               </Button>
             ))}
@@ -84,7 +59,7 @@ export default function NavBar({ navLinks }: Props) {
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       >
-        {drawer}
+        <MobileMenu navLinks={navLinks} />
       </MobileDrawer>
       <Toolbar id="back-to-top-anchor" />
 
