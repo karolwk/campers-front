@@ -9,10 +9,14 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+import { Navlinks } from '../../../shared/types';
 
-type Props = {};
+type Props = {
+  navLinks: Navlinks;
+  handleDrawerToggle?: () => void;
+};
 
-const MobileMenu = (props: Props) => {
+const MobileMenu = ({ navLinks, handleDrawerToggle }: Props) => {
   return (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
