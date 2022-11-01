@@ -1,4 +1,15 @@
 .navbar {
-  background-color: white;
+  background-color: transparent;
   color: black;
+  display: flex;
+}
+
+.navbar2 {
+  background: rgba(255, 255, 255, 0.7);
+  color: black;
+  backdrop-filter: blur(20px);
+}
+
+.menu {
+  justify-self: right;
 }
