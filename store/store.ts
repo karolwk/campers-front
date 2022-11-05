@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './authSlice';
+import footerReducer from './footerSlice';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    footer: footerReducer,
   },
 });
 
