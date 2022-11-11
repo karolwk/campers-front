@@ -1,4 +1,5 @@
 import admin from 'firebase-admin';
+import { getStorage } from 'firebase-admin/storage';
 
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -23,4 +24,7 @@ if (!admin.apps.length) {
     console.log('Firebase admin initialization error', error.stack);
   }
 }
+
+export const storage = getStorage();
+
 export default admin.firestore();
