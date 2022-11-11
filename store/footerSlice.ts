@@ -7,7 +7,7 @@ const initialState: FooterState = {
   logoURL: '',
   email: '',
   phone: '',
-  companyName: '',
+  companyName: 'dd',
   companyaddress: '',
   facebook: null,
   instagram: null,
@@ -23,7 +23,13 @@ export const counterSlice = createSlice({
     builder.addMatcher(
       localApi.endpoints.getHeaders.matchFulfilled,
       (state, { payload }) => {
-        state = _.merge(payload, state);
+        // console.log(state.companyName);
+        // state = _.merge(payload, state);
+        // console.log(state);
+        for (let key in state) {
+          //@ts-ignore
+          state[key] = payload[key];
+        }
       }
     );
   },
