@@ -9,10 +9,11 @@ import styles from './NavBar.module.css';
 import ScrollTop from '../../ui/ScrollTop/ScrollTop';
 import MobileDrawer from '../../dialogs/Drawer/MobileDrawer';
 import { Button, Box, IconButton, useScrollTrigger } from '@mui/material';
-
+import { useAppSelector } from '../../../hooks/reduxHooks';
 import MenuIcon from '@mui/icons-material/Menu';
 import MobileMenu from '../../menu/MobileMenu/MobileMenu';
 import { Navlinks } from '../../../shared/types';
+import { useGetHeadersQuery } from '../../../services/localApi';
 
 interface Props {
   navLinks: Navlinks;
@@ -39,6 +40,9 @@ function ElevationScroll(props: ElevationProps) {
 export default function NavBar({ navLinks, ...props }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  const { data, error, isLoading } = useGetHeadersQuery();
+  const navData = useAppSelector((state) => state.footer);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -52,6 +56,8 @@ export default function NavBar({ navLinks, ...props }: Props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Logo
             </Typography>
+            <Typography>{isLoading ? 'Loading' : data?.email}</Typography>
+            <Button onClick={() => console.log(navData)}>Click Me!</Button>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -67,7 +73,11 @@ export default function NavBar({ navLinks, ...props }: Props) {
               className={styles.menu}
             >
               {navLinks.map((item) => (
-                <Button key={item.name} sx={{ color: '#000000' }}>
+                <Button
+                  key={item.name}
+                  sx={{ color: '#000000' }}
+                  href={item.url}
+                >
                   {item.name}
                 </Button>
               ))}
