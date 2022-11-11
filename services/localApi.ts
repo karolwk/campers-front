@@ -4,10 +4,10 @@ import { FooterState } from '../shared/types';
 
 // Define a service using a base URL and expected endpoints
 export const localApi = createApi({
-  reducerPath: 'footerApi',
+  reducerPath: 'localApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: (builder) => ({
-    getHeaders: builder.query<FooterState, null>({
+    getHeaders: builder.query<FooterState, void>({
       query: () => `/headers`,
     }),
   }),
