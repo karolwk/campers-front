@@ -56,8 +56,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Logo
             </Typography>
-            <Typography>{isLoading ? 'Loading' : data?.email}</Typography>
-            <Button onClick={() => console.log(navData)}>Click Me!</Button>
+
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -72,15 +71,18 @@ export default function NavBar({ navLinks, ...props }: Props) {
               sx={{ display: { xs: 'none', sm: 'block' } }}
               className={styles.menu}
             >
-              {navLinks.map((item) => (
-                <Button
-                  key={item.name}
-                  sx={{ color: '#000000' }}
-                  href={item.url}
-                >
-                  {item.name}
-                </Button>
-              ))}
+              <Typography>{isLoading ? '' : data?.email}</Typography>
+              <Box>
+                {navLinks.map((item) => (
+                  <Button
+                    key={item.name}
+                    sx={{ color: '#000000' }}
+                    href={item.url}
+                  >
+                    {item.name}
+                  </Button>
+                ))}
+              </Box>
             </Box>
           </Toolbar>
         </AppBar>
