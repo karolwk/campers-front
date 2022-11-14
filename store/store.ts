@@ -1,21 +1,27 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import footerReducer from './footerSlice';
-
+import { createWrapper } from 'next-redux-wrapper';
 import { localApi } from '../services/localApi';
+import { pageSettingsApi } from '../services/pageSettingsApi';
 
-export const store = configureStore({
-  reducer: {
-    [localApi.reducerPath]: localApi.reducer,
-    footer: footerReducer,
-  },
+export const makeStore = () =>
+  configureStore({
+    reducer: {
+      [localApi.reducerPath]: localApi.reducer,
+      [pageSettingsApi.reducerPath]: pageSettingsApi.reducer,
+      footer: footerReducer,
+    },
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localApi.middleware),
-});
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(
+        localApi.middleware,
+        pageSettingsApi.middleware
+      ),
+  });
 
-setupListeners(store.dispatch);
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
 
-export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
+export const wrapper = createWrapper<AppStore>(makeStore, { debug: true });
