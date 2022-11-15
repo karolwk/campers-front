@@ -1,8 +1,10 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import admin from 'firebase-admin';
+import { getStorage } from 'firebase-admin/storage';
 
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  //@ts-ignore
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.FIREBASE_DATABASE_URL,
@@ -13,10 +15,16 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+if (!admin.apps.length) {
+  try {
+    admin.initializeApp({
+      credential: admin.credential.cert(firebaseConfig),
+    });
+  } catch (error: any) {
+    console.log('Firebase admin initialization error', error.stack);
+  }
+}
 
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+export const storage = getStorage();
 
-export default db;
+export default admin.firestore();
