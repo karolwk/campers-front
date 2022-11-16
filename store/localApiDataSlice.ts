@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { FooterState } from '../shared/types';
+import { PageDataState } from '../shared/types';
 import { localApi } from '../services/localApi';
+import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
-const initialState: FooterState = {
+const initialState: PageDataState = {
   logoURL: '',
-  email: '',
+  email: 'ss@aa',
   phone: '',
   companyName: 'dd',
   companyaddress: '',
