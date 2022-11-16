@@ -13,7 +13,8 @@ import { useAppSelector } from '../../../hooks/reduxHooks';
 import MenuIcon from '@mui/icons-material/Menu';
 import MobileMenu from '../../menu/MobileMenu/MobileMenu';
 import { Navlinks } from '../../../shared/types';
-import { useGetHeadersQuery } from '../../../services/localApi';
+
+import Link from 'next/link';
 
 interface Props {
   navLinks: Navlinks;
@@ -40,8 +41,7 @@ function ElevationScroll(props: ElevationProps) {
 export default function NavBar({ navLinks, ...props }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const { data, error, isLoading } = useGetHeadersQuery();
-  const navData = useAppSelector((state) => state.footer);
+  const navData = useAppSelector((state) => state.pageData);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -71,18 +71,17 @@ export default function NavBar({ navLinks, ...props }: Props) {
               sx={{ display: { xs: 'none', sm: 'block' } }}
               className={styles.menu}
             >
-              <Typography>{isLoading ? '' : data?.email}</Typography>
-              <Box>
-                {navLinks.map((item) => (
-                  <Button
-                    key={item.name}
-                    sx={{ color: '#000000' }}
-                    href={item.url}
-                  >
+              <Box sx={{ paddingLeft: '10px', display: 'flex', gap: '20px' }}>
+                <Typography>{navData.email}</Typography>
+                <Typography>{navData.phone}</Typography>
+              </Box>
+              {navLinks.map((item) => (
+                <Link href={item.url} key={item.name} passHref>
+                  <Button sx={{ color: '#000000', marginRight: '20px' }}>
                     {item.name}
                   </Button>
-                ))}
-              </Box>
+                </Link>
+              ))}
             </Box>
           </Toolbar>
         </AppBar>
