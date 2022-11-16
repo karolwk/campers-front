@@ -1,7 +1,7 @@
 export const navLinks = [
   {
     name: 'Główna',
-    url: '#',
+    url: '/',
   },
   {
     name: 'O nas',
@@ -18,6 +18,6 @@ export const navLinks = [
 
   {
     name: 'Kontakt',
-    url: '#',
+    url: 'kontakt',
   },
 ];

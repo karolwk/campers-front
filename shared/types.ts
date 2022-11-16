@@ -1,7 +1,7 @@
 export type Navlinks = { name: string; url: string }[];
 
 // Define a type for the slice state
-export interface FooterState {
+export interface PageDataState {
   logoURL: string;
   email: string;
   phone: string;
