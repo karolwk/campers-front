@@ -1,21 +1,24 @@
+import { Box, Typography, Container } from '@mui/material';
 import Image from 'next/image';
+import styles from './Footer.module.css';
 import React from 'react';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 type Props = {};
 
 const Footer = (props: Props) => {
+  const pageData = useAppSelector((store) => store.pageData);
+
   return (
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{' '}
-        <span>
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </span>
-      </a>
+    <footer className={styles.footer}>
+      <Container className={styles.container}>
+        <Box>
+          <Typography variant="subtitle1">Kontakt</Typography>
+        </Box>
+
+        <Box></Box>
+        <Box></Box>
+      </Container>
     </footer>
   );
 };
