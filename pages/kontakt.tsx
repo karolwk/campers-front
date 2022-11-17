@@ -2,16 +2,23 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/Layout/Layout';
 import { wrapper } from '../store/store';
-import { useFetchPageDataQuery } from '../services/pageSettingsApi';
+import db from '../utils/db/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { setEnt } from '../store/pageDataSlice';
+import { PageDataState } from '../shared/types';
 
-const Kontakt: NextPage = () => {
+interface OtherProps {
+  appProp: string;
+}
+
+const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
   return (
     <Layout
       title="Kampery na wynajem - kontakt"
       description="Wynajem kamperow Wieliczka - kontakt"
     >
       {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
-      {}
+      {JSON.stringify(appProp)}
 
       <h1>Kontakt</h1>
     </Layout>
@@ -19,14 +26,17 @@ const Kontakt: NextPage = () => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const { data } = useFetchPageDataQuery(null);
-
-  console.log('State on server', store.getState());
-  console.log(data);
+  const docRef = doc(
+    db,
+    process.env.FIREBASE_DB_PAGEDATA_COL as string,
+    process.env.FIREBASE_DB_PAGEDATA_DOC as string
+  );
+  const docSnap = await getDoc(docRef);
+  store.dispatch(setEnt(docSnap.data() as PageDataState));
 
   return {
     props: {
-      data,
+      appProp: docSnap.data(),
     },
   };
 });
