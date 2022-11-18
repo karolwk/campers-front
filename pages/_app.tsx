@@ -5,16 +5,19 @@ import { navLinks } from '../shared/links';
 import Footer from '../components/Footer/Footer';
 import { wrapper } from '../store/store';
 import { Provider } from 'react-redux';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from '../styles/theme';
 
 function MyApp({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
   return (
     <Provider store={store}>
-      <CssBaseline />
-      <NavBar navLinks={navLinks} />
-      <Component {...props.pageProps} />
-      <Footer />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavBar navLinks={navLinks} />
+        <Component {...props.pageProps} />
+        <Footer />
+      </ThemeProvider>
     </Provider>
   );
 }
