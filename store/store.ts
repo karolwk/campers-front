@@ -1,23 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import footerReducer from './footerSlice';
+import localApiReducer from './localApiDataSlice';
 import { createWrapper } from 'next-redux-wrapper';
 import { localApi } from '../services/localApi';
-import { pageSettingsApi } from '../services/pageSettingsApi';
+import { firebaseApi } from '../services/firebaseApi';
+import { pageDataSlice } from './pageDataSlice';
 
 export const makeStore = () =>
   configureStore({
     reducer: {
       [localApi.reducerPath]: localApi.reducer,
-      [pageSettingsApi.reducerPath]: pageSettingsApi.reducer,
-      footer: footerReducer,
+      [pageDataSlice.name]: pageDataSlice.reducer,
+      headersData: localApiReducer,
     },
 
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(
-        localApi.middleware,
-        pageSettingsApi.middleware
-      ),
+      getDefaultMiddleware().concat(localApi.middleware),
   });
 
 export type AppStore = ReturnType<typeof makeStore>;
