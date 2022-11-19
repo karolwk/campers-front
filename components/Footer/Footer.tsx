@@ -1,4 +1,4 @@
-import { Box, Typography, Container } from '@mui/material';
+import { Box, Typography, Container, Button } from '@mui/material';
 import Image from 'next/image';
 import styles from './Footer.module.css';
 import React from 'react';
@@ -11,9 +11,11 @@ const Footer = (props: Props) => {
 
   return (
     <footer className={styles.footer}>
-      <Container className={styles.container}>
-        <Box>
+      <Container>
+        <Box sx={{ position: 'relative' }}>
           <Typography variant="subtitle1">Kontakt</Typography>
+
+          <Image src="/images/logo.png" alt="dia" width={172} height={92} />
         </Box>
 
         <Box></Box>

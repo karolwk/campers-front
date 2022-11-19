@@ -2,13 +2,18 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styles from './NavBar.module.css';
 import ScrollTop from '../../ui/ScrollTop/ScrollTop';
 import MobileDrawer from '../../dialogs/Drawer/MobileDrawer';
-import { Button, Box, IconButton, useScrollTrigger } from '@mui/material';
+import {
+  Button,
+  Box,
+  IconButton,
+  useScrollTrigger,
+  Container,
+} from '@mui/material';
 import { useAppSelector } from '../../../hooks/reduxHooks';
 import MenuIcon from '@mui/icons-material/Menu';
 import MobileMenu from '../../menu/MobileMenu/MobileMenu';
@@ -49,41 +54,42 @@ export default function NavBar({ navLinks, ...props }: Props) {
 
   return (
     <React.Fragment>
-      <CssBaseline />
       <ElevationScroll {...props}>
         <AppBar className={styles.navbar}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Logo
-            </Typography>
+          <Container>
+            <Toolbar className={styles.toolbar}>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Logo
+              </Typography>
 
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-              onClick={handleDrawerToggle}
-              sx={{ pr: 2, display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerToggle}
+                sx={{ pr: 2, display: { md: 'none' } }}
+              >
+                <MenuIcon />
+              </IconButton>
 
-            <Box
-              sx={{ display: { xs: 'none', sm: 'block' } }}
-              className={styles.menu}
-            >
-              <Box sx={{ paddingLeft: '10px', display: 'flex', gap: '20px' }}>
-                <Typography>{navData.email}</Typography>
-                <Typography>{navData.phone}</Typography>
+              <Box
+                sx={{ display: { xs: 'none', md: 'block' } }}
+                className={styles.menu}
+              >
+                <Box sx={{ paddingLeft: '10px', display: 'flex', gap: '20px' }}>
+                  <Typography>{navData.email}</Typography>
+                  <Typography>{navData.phone}</Typography>
+                </Box>
+                {navLinks.map((item) => (
+                  <Link href={item.url} key={item.name} passHref>
+                    <Button sx={{ color: '#000000', marginRight: '20px' }}>
+                      {item.name}
+                    </Button>
+                  </Link>
+                ))}
               </Box>
-              {navLinks.map((item) => (
-                <Link href={item.url} key={item.name} passHref>
-                  <Button sx={{ color: '#000000', marginRight: '20px' }}>
-                    {item.name}
-                  </Button>
-                </Link>
-              ))}
-            </Box>
-          </Toolbar>
+            </Toolbar>
+          </Container>
         </AppBar>
       </ElevationScroll>
       <MobileDrawer
