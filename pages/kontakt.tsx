@@ -6,6 +6,7 @@ import db from '../utils/db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
+import { Container } from '@mui/material';
 
 interface OtherProps {
   appProp: string;
@@ -17,10 +18,12 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
       title="Kampery na wynajem - kontakt"
       description="Wynajem kamperow Wieliczka - kontakt"
     >
-      {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
-      {JSON.stringify(appProp)}
+      <Container component="section">
+        {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
+        {JSON.stringify(appProp)}
 
-      <h1>Kontakt</h1>
+        <h1>Kontakt</h1>
+      </Container>
     </Layout>
   );
 };
