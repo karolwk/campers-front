@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import db from '../../utils/db/firebase';
-import { FooterState } from '../../shared/types';
+import db from '../../utils/db/firebaseAdmin';
+import { PageDataState } from '../../shared/types';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<FooterState>
+  res: NextApiResponse<PageDataState>
 ) {
   try {
     const doc = await db
@@ -15,7 +15,7 @@ export default async function handler(
     if (!doc.exists) {
       res.status(404).end();
     } else {
-      res.status(200).json(doc.data() as FooterState);
+      res.status(200).json(doc.data() as PageDataState);
     }
   } catch (error) {
     res.status(400).end();
