@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import { PageDataState } from '../shared/types';
 import { localApi } from '../services/localApi';
-import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
 const initialState: PageDataState = {
   logoURL: '',

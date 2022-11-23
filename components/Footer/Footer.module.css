@@ -1,7 +1,5 @@
 .footer {
-  margin: auto;
-}
-
-.container {
-  max-width: 1280px;
+  background-color: #eef2e6;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
