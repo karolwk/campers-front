@@ -15,7 +15,7 @@ const Home: NextPage = () => {
     <Layout title="Kampery na wynajem" description="Wynajem kamperow Wieliczka">
       {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
       <Container component="section">
-        {[...new Array(122)]
+        {[...new Array(22)]
           .map((ele) => {
             return 'Nam provident pariatur pariatur amet vero. Et consequatur modi ut molestiae assumenda voluptas numquam doloremque. Et reprehenderit nostrum quisquam nisi ipsum tempore.';
           })

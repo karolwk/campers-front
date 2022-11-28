@@ -7,6 +7,8 @@ export interface PageDataState {
   phone: string;
   companyName: string;
   companyaddress: string;
+  companyZipCode: string | null;
+  companyCity: string | null;
   facebook: string | null;
   instagram: string | null;
   pinterest: string | null;

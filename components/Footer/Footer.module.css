@@ -3,3 +3,12 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+
+.markdown {
+  white-space: pre-wrap;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}

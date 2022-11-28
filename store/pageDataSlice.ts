@@ -10,6 +10,8 @@ const initialState: PageDataState = {
   phone: '',
   companyName: '',
   companyaddress: '',
+  companyZipCode: '',
+  companyCity: '',
   facebook: null,
   instagram: null,
   pinterest: null,
