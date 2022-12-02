@@ -9,6 +9,7 @@ import FooterCard from './FooterCard/FooterCard';
 import NextLink from 'next/link';
 import { navLinks } from '../../shared/links';
 import { Link as MuiLink } from '@mui/material';
+import { Facebook } from '@mui/icons-material';
 
 type Props = {};
 
@@ -38,9 +39,14 @@ const Footer = (props: Props) => {
             </NextLink>
           ))}
         </FooterCard>
-
-        <Box></Box>
-        <Box></Box>
+        <FooterCard title="Sociale">test</FooterCard>
+        <FooterCard title="">
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Button>Zadzwoń do nas</Button>
+            <Button>Napisz do nas</Button>
+            <Button>Zobacz na mapie</Button>
+          </Box>
+        </FooterCard>
       </Container>
     </footer>
   );
