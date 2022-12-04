@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -34,5 +35,7 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+
+export const fireStorage = getStorage(app);
 
 export default db;

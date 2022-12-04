@@ -8,12 +8,40 @@ import db, { fetchFBData } from '../utils/db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
-import { Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
+import { ref } from 'firebase/storage';
+
+type HomeProps = {
+  mainPage: {};
+};
 
 const Home: NextPage = () => {
   return (
     <Layout title="Kampery na wynajem" description="Wynajem kamperow Wieliczka">
-      {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
+      <Box sx={{ position: 'relative', minHeight: '40vw' }}>
+        <Image
+          src="/images/background.jpg"
+          alt="dia"
+          layout="fill"
+          objectFit="cover"
+        />
+        <Typography
+          variant="h1"
+          sx={{
+            zIndex: '1000',
+            fontSize: '2rem',
+            position: 'absolute',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            bottom: '30%',
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+          }}
+        >
+          Wynajmnij kampera
+        </Typography>
+      </Box>
       <Container component="section">
         {[...new Array(22)]
           .map((ele) => {
@@ -26,18 +54,25 @@ const Home: NextPage = () => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const dupa = process.env.FIREBASE_DB_PAGEDATA_COL;
   const docSnap = await fetchFBData<PageDataState>(
     db,
     process.env.FIREBASE_DB_PAGEDATA_COL as string,
     process.env.FIREBASE_DB_PAGEDATA_DOC as string
   );
 
+  const docMainPage = doc(
+    db,
+    process.env.FIREBASE_DB_PAGEDATA_COL as string,
+    process.env.FIREBASE_DB_PAGEDATA_DOC as string
+  );
+  const docMainPageSnap = await getDoc(docMainPage);
+
   store.dispatch(setEnt(docSnap as PageDataState));
 
   return {
     props: {
       appProp: docSnap,
+      mainPage: docMainPageSnap.data(),
     },
   };
 });
