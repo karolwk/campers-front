@@ -10,3 +10,13 @@ export const formatPhone = (number: string): string => {
     newNumber.substring(6, 9);
   return newNumber;
 };
+
+export const formatPathtoGCS = (path: string): string => {
+  // helper function to convert image src path to Google Cloud Storage address
+
+  const bucket =
+    'https://firebasestorage.googleapis.com/v0/b/kampery-kamil-cms.appspot.com/o/';
+  const encodedPath = path.replace('/', '%2F');
+
+  return bucket + encodedPath + '?alt=media';
+};
