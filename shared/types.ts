@@ -14,3 +14,25 @@ export interface PageDataState {
   pinterest: string | null;
   twitter: string | null;
 }
+
+interface MarKetingIcons {
+  iconURL: string;
+  title: string;
+  description: string;
+}
+
+interface FaqMainPage {
+  question: string;
+  answer: string;
+}
+
+export interface MainPageData {
+  title: string;
+  description: string;
+  icons: MarKetingIcons[];
+  teaserTitle: string;
+  teaserContent: string;
+  campersTitle: string;
+  campersDescription: string;
+  faq: FaqMainPage[];
+}
