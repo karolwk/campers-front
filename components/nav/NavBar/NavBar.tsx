@@ -54,6 +54,12 @@ export default function NavBar({ navLinks, ...props }: Props) {
 
   return (
     <React.Fragment>
+      <MobileDrawer
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+      >
+        <MobileMenu navLinks={navLinks} />
+      </MobileDrawer>
       <ElevationScroll {...props}>
         <AppBar className={styles.navbar}>
           <Container>
@@ -92,12 +98,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
           </Container>
         </AppBar>
       </ElevationScroll>
-      <MobileDrawer
-        mobileOpen={mobileOpen}
-        handleDrawerToggle={handleDrawerToggle}
-      >
-        <MobileMenu navLinks={navLinks} />
-      </MobileDrawer>
+
       <Toolbar id="back-to-top-anchor" />
 
       <ScrollTop>
