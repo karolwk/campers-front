@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import NavBar from '../components/nav/NavBar/NavBar';
 import { navLinks } from '../shared/links';
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/layouts/Footer/Footer';
 import { wrapper } from '../store/store';
 import { Provider } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';

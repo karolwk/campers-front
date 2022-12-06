@@ -2,12 +2,12 @@ import { Box, Typography, Container, Button } from '@mui/material';
 import Image from 'next/image';
 import styles from './Footer.module.css';
 import React from 'react';
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector } from '../../../hooks/reduxHooks';
 import ReactMarkdown from 'react-markdown';
-import { formatPhone } from '../../utils/helpers';
-import FooterCard from './FooterCard/FooterCard';
+import { formatPhone } from '../../../utils/helpers';
+import FooterCard from '../../cards/FooterCard/FooterCard';
 import NextLink from 'next/link';
-import { navLinks } from '../../shared/links';
+import { navLinks } from '../../../shared/links';
 import { Link as MuiLink } from '@mui/material';
 import { Facebook } from '@mui/icons-material';
 
@@ -20,7 +20,7 @@ const Footer = (props: Props) => {
     <footer className={styles.footer}>
       <Container className={styles.container}>
         <FooterCard title="Kontakt">
-          <Image src="/images/logo.png" alt="dia" width={172} height={92} />
+          <Image src="/images/logo.png" alt="Logo" width={172} height={92} />
           <Box>
             <Typography fontWeight="bold">{pageData.companyName}</Typography>
             <Typography>{pageData.companyaddress}</Typography>

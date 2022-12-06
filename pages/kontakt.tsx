@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
 import db from '../utils/db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
