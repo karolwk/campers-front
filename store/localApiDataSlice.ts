@@ -13,6 +13,8 @@ const initialState: PageDataState = {
   instagram: null,
   pinterest: null,
   twitter: null,
+  companyCity: null,
+  companyZipCode: null,
 };
 
 export const counterSlice = createSlice({
