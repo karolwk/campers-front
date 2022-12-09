@@ -63,7 +63,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
       <ElevationScroll {...props}>
         <AppBar className={styles.navbar}>
           <Container>
-            <Toolbar className={styles.toolbar}>
+            <Toolbar className={styles.toolbar} component="nav">
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Logo
               </Typography>
