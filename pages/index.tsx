@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db, { fetchFBData } from '../utils/db/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import db, { fetchFBData, fetchRefs } from '../utils/db/firebase';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
 import { Box, Container, Typography } from '@mui/material';
@@ -113,13 +113,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   let test = docMainPageSnap.data() as any;
 
-  test.faq = await Promise.all(
-    //@ts-ignore
-    test.faq.map(async (ele) => {
-      const testSnap = await getDoc(ele);
-      return testSnap.data();
-    })
-  );
+  test.faq = await fetchRefs(test.faq);
+
+  const campersSnapshot = await getDocs(collection(db, 'campers'));
 
   let mainPage = JSON.stringify(docMainPageSnap.data());
   mainPage = JSON.parse(mainPage);
