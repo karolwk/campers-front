@@ -30,6 +30,15 @@ export const fetchFBData = async <T>(
   }
 };
 
+// Gets all data from refrences
+export const fetchRefs = async (refs: []) =>
+  await Promise.all(
+    refs.map(async (ele) => {
+      const testSnap = await getDoc(ele);
+      return testSnap.data();
+    })
+  );
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
