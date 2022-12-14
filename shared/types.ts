@@ -21,7 +21,7 @@ interface MarKetingIcons {
   description: string;
 }
 
-interface FaqMainPage {
+export interface FaqMainPage {
   question: string;
   answer: string;
 }
