@@ -6,19 +6,29 @@ import db, { fetchFBData, fetchRefs } from '../utils/db/firebase';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
-import { Box, Container, Typography } from '@mui/material';
+import {
+  Box,
+  Container,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material';
 import styles from '../styles/Home.module.css';
-import { MainPageData } from '../shared/types';
+import { MainPageData, Camper } from '../shared/types';
 import IconCard from '../components/cards/IconCard/IconCard';
 import ReactMarkdown from 'react-markdown';
+import CamperCard from '../components/cards/CamperCard/CamperCard';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FaqAccordion from '../components/ui/FaqAccordion/FaqAccordion';
 
 type HomeProps = {
   mainPage: MainPageData;
-  test: MainPageData;
+  campers: Camper[];
 };
 
-const Home: NextPage<HomeProps> = ({ test, mainPage }) => {
-  console.log(test);
+const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
+  console.log(campers);
   return (
     <Layout title="Kampery na wynajem" description="Wynajem kamperow Wieliczka">
       <Box sx={{ position: 'relative', minHeight: '40vw' }}>
@@ -89,6 +99,12 @@ const Home: NextPage<HomeProps> = ({ test, mainPage }) => {
         <Typography variant="subtitle1">
           {mainPage.campersDescription}
         </Typography>
+        {campers.map((camper) => (
+          <CamperCard key={camper.name} camper={camper} />
+        ))}
+      </Container>
+      <Container sx={{ position: 'relative' }}>
+        <FaqAccordion faq={mainPage.faq} />
       </Container>
     </Layout>
   );
@@ -111,19 +127,40 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   );
   const docMainPageSnap = await getDoc(docMainPage);
 
-  let test = docMainPageSnap.data() as any;
+  // getting reference data for FAQ
+  let mainPage = docMainPageSnap.data() as any;
+  mainPage.faq = await fetchRefs(mainPage.faq);
 
-  test.faq = await fetchRefs(test.faq);
+  const campersSnapshot = await getDocs(
+    collection(db, process.env.FIREBASE_DB_CAMPERS as string)
+  );
 
-  const campersSnapshot = await getDocs(collection(db, 'campers'));
+  // build campers array from camper collection snapshot
+  const camperList = [] as any;
+  campersSnapshot.forEach((doc) => {
+    camperList.push(doc.data());
+  });
 
-  let mainPage = JSON.stringify(docMainPageSnap.data());
-  mainPage = JSON.parse(mainPage);
+  // get data from amenities refrences
+  const campers = await Promise.all(
+    camperList.map(async (camper: any) => {
+      // get data for each amenity
+      camper.mainAmenities = await fetchRefs(camper.mainAmenities);
+      // get data for icons
+      camper.mainAmenities = await Promise.all(
+        camper.mainAmenities.map(async (amenitie: any) => {
+          amenitie.icon = (await getDoc(amenitie.icon)).data();
+          return amenitie;
+        })
+      );
+      return camper;
+    })
+  );
 
   return {
     props: {
       mainPage: mainPage,
-      test: test,
+      campers: campers,
     },
   };
 });
