@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, QuerySnapshot } from 'firebase/firestore';
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
@@ -39,7 +39,14 @@ export const fetchRefs = async (refs: []) =>
     })
   );
 
-export const fetchCampers = async (camperList: []) => {
+// Fetch all campers with their refrences from collection
+export const fetchCampers = async (campersSnapshot: QuerySnapshot) => {
+  const camperList = [] as any[];
+  // build campers array from camper collection snapshot
+  campersSnapshot.forEach((doc) => {
+    camperList.push(doc.data());
+  });
+
   return Promise.all(
     camperList.map(async (camper: any) => {
       // get data for each amenity
