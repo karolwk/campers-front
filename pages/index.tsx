@@ -2,24 +2,16 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db, { fetchFBData, fetchRefs } from '../utils/db/firebase';
+import db, { fetchCampers, fetchFBData, fetchRefs } from '../utils/db/firebase';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
-import {
-  Box,
-  Container,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import styles from '../styles/Home.module.css';
 import { MainPageData, Camper } from '../shared/types';
 import IconCard from '../components/cards/IconCard/IconCard';
 import ReactMarkdown from 'react-markdown';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FaqAccordion from '../components/ui/FaqAccordion/FaqAccordion';
 
 type HomeProps = {
@@ -135,27 +127,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     collection(db, process.env.FIREBASE_DB_CAMPERS as string)
   );
 
-  // build campers array from camper collection snapshot
-  const camperList = [] as any;
-  campersSnapshot.forEach((doc) => {
-    camperList.push(doc.data());
-  });
-
-  // get data from amenities refrences
-  const campers = await Promise.all(
-    camperList.map(async (camper: any) => {
-      // get data for each amenity
-      camper.mainAmenities = await fetchRefs(camper.mainAmenities);
-      // get data for icons
-      camper.mainAmenities = await Promise.all(
-        camper.mainAmenities.map(async (amenitie: any) => {
-          amenitie.icon = (await getDoc(amenitie.icon)).data();
-          return amenitie;
-        })
-      );
-      return camper;
-    })
-  );
+  // fetching campers data
+  const campers = await fetchCampers(campersSnapshot);
 
   return {
     props: {
