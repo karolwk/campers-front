@@ -2,21 +2,21 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db from '../utils/db/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import db, { fetchCampers } from '../utils/db/firebase';
+import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
-import { PageDataState } from '../shared/types';
+import { Camper, PageDataState } from '../shared/types';
 import { Container } from '@mui/material';
-
+fetchCampers;
 interface OtherProps {
-  appProp: string;
+  campers: Camper;
 }
 
-const Kampery: NextPage<OtherProps> = ({ appProp }) => {
+const Kampery: NextPage<OtherProps> = ({ campers: appProp }) => {
   return (
     <Layout
-      title="Kampery na wynajem - kontakt"
-      description="Wynajem kamperow Wieliczka - kontakt"
+      title="Kampery na wynajem - oferta"
+      description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
       <Container component="section">
         {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
@@ -37,9 +37,16 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const docSnap = await getDoc(docRef);
   store.dispatch(setEnt(docSnap.data() as PageDataState));
 
+  const campersSnapshot = await getDocs(
+    collection(db, process.env.FIREBASE_DB_CAMPERS as string)
+  );
+
+  // fetching campers data
+  const campers = await fetchCampers(campersSnapshot);
+
   return {
     props: {
-      appProp: docSnap.data(),
+      appProp: campers,
     },
   };
 });
