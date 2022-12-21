@@ -19,7 +19,6 @@ const Kampery: NextPage<OtherProps> = ({ campers: appProp }) => {
       description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
       <Container component="section">
-        {/* <Image src="/images/background.jpg" alt="dia" layout="fill" /> */}
         {JSON.stringify(appProp)}
 
         <h1>Kampery</h1>
