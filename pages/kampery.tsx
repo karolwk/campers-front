@@ -12,16 +12,14 @@ interface OtherProps {
   campers: Camper;
 }
 
-const Kampery: NextPage<OtherProps> = ({ campers: appProp }) => {
+const Kampery: NextPage<OtherProps> = ({ campers }) => {
   return (
     <Layout
       title="Kampery na wynajem - oferta"
       description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
       <Container component="section">
-        {JSON.stringify(appProp)}
-
-        <h1>Kampery</h1>
+        <h1>{campers.name}</h1>
       </Container>
     </Layout>
   );
@@ -40,7 +38,6 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     collection(db, process.env.FIREBASE_DB_CAMPERS as string)
   );
 
-  // fetching campers data
   const campers = await fetchCampers(campersSnapshot);
 
   return {
