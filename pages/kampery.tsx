@@ -6,10 +6,11 @@ import db, { fetchCampers } from '../utils/db/firebase';
 import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { Camper, PageDataState } from '../shared/types';
-import { Container } from '@mui/material';
-fetchCampers;
+import { Container, Typography } from '@mui/material';
+import CamperCard from '../components/cards/CamperCard/CamperCard';
+
 interface OtherProps {
-  campers: Camper;
+  campers: Camper[];
 }
 
 const Kampery: NextPage<OtherProps> = ({ campers }) => {
@@ -18,8 +19,12 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
       title="Kampery na wynajem - oferta"
       description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
-      <Container component="section">
-        <h1>{campers.name}</h1>
+      <Container>
+        <Typography variant="h2">Nasze kampery</Typography>
+        <Typography variant="subtitle1">zapoznaj się z ofertą</Typography>
+        {campers.map((camper) => (
+          <CamperCard key={camper.name} camper={camper} />
+        ))}
       </Container>
     </Layout>
   );
