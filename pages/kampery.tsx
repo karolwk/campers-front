@@ -14,6 +14,7 @@ interface OtherProps {
 }
 
 const Kampery: NextPage<OtherProps> = ({ campers }) => {
+  console.log(campers);
   return (
     <Layout
       title="Kampery na wynajem - oferta"
@@ -47,7 +48,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   return {
     props: {
-      appProp: campers,
+      campers: campers,
     },
   };
 });
