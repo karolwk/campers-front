@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Container, Button } from '@mui/material';
-
+import styles from './CamperCard.module.css';
 import { Camper } from '../../../shared/types';
 import NextImage from 'next/image';
 import { formatPathtoGCS } from '../../../utils/helpers';
@@ -11,7 +11,7 @@ type Props = {
 
 const CamperCard = ({ camper }: Props) => {
   return (
-    <Box>
+    <Box className={styles.camperBox}>
       <Box>
         <NextImage
           src={formatPathtoGCS(camper.mainImage)}
@@ -22,7 +22,7 @@ const CamperCard = ({ camper }: Props) => {
       </Box>
       <Typography variant="h2">{camper.name}</Typography>
       {camper.mainAmenities?.map((amenity) => (
-        <Box key={amenity.name}>
+        <Box key={amenity.name} className={styles.iconBox}>
           <NextImage
             src={formatPathtoGCS(amenity.icon.iconPath)}
             height={32}

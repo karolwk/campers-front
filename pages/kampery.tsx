@@ -8,7 +8,7 @@ import { setEnt } from '../store/pageDataSlice';
 import { Camper, PageDataState } from '../shared/types';
 import { Container, Typography } from '@mui/material';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
-
+import styles from '../styles/Kampery.module.css';
 interface OtherProps {
   campers: Camper[];
 }
@@ -24,7 +24,12 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
         <Typography variant="h2">Nasze kampery</Typography>
         <Typography variant="subtitle1">zapoznaj się z ofertą</Typography>
         {campers.map((camper) => (
-          <CamperCard key={camper.name} camper={camper} />
+          <>
+            <CamperCard key={camper.name} camper={camper} />
+            <CamperCard key={camper.name + '1'} camper={camper} />
+            <CamperCard key={camper.name + '2'} camper={camper} />
+            <CamperCard key={camper.name + '3'} camper={camper} />
+          </>
         ))}
       </Container>
     </Layout>
