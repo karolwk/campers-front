@@ -1,0 +1,17 @@
+.camperBox {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camperBox h2 {
+  font-size: 14px;
+  text-align: center;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
