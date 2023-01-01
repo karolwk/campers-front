@@ -6,7 +6,7 @@ import db, { fetchCampers } from '../utils/db/firebase';
 import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { Camper, PageDataState } from '../shared/types';
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
 import styles from '../styles/Kampery.module.css';
 interface OtherProps {
@@ -21,8 +21,14 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
       description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
       <Container>
-        <Typography variant="h2">Nasze kampery</Typography>
-        <Typography variant="subtitle1">zapoznaj się z ofertą</Typography>
+        <Box className={styles.modelsBox}>
+          <Typography variant="h2">Nasze kampery</Typography>
+          <Typography variant="subtitle1">
+            Nasze kampery są w pełni wyposażone, łatwe w obsłudze i idealne na
+            kempingowe wyjazdy. Od spokojnego weekendu po eksplorowanie Europy,
+            możliwości są nieograniczone!
+          </Typography>
+        </Box>
         {campers.map((camper) => (
           <>
             <CamperCard key={camper.name} camper={camper} />
