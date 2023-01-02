@@ -21,7 +21,7 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
       description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
       <Container>
-        <Box className={styles.modelsBox}>
+        <Box className={styles.camperboxHeader}>
           <Typography variant="h2">Nasze kampery</Typography>
           <Typography variant="subtitle1">
             Nasze kampery są w pełni wyposażone, łatwe w obsłudze i idealne na
