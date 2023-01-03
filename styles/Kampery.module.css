@@ -3,8 +3,11 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  max-width: 100px;
 }
 
-.camperbox-main {
+.camperboxMain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
