@@ -1,6 +1,6 @@
-import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
-const theme = createTheme({
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+
+let theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -21,4 +21,6 @@ const theme = createTheme({
     },
   },
 });
+
+theme = responsiveFontSizes(theme);
 export default theme;
