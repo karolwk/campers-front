@@ -29,14 +29,16 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
             możliwości są nieograniczone!
           </Typography>
         </Box>
-        {campers.map((camper) => (
-          <>
-            <CamperCard key={camper.name} camper={camper} />
-            <CamperCard key={camper.name + '1'} camper={camper} />
-            <CamperCard key={camper.name + '2'} camper={camper} />
-            <CamperCard key={camper.name + '3'} camper={camper} />
-          </>
-        ))}
+        <Box className={styles.camperboxMain}>
+          {campers.map((camper) => (
+            <>
+              <CamperCard key={camper.name} camper={camper} />
+              <CamperCard key={camper.name + '1'} camper={camper} />
+              <CamperCard key={camper.name + '2'} camper={camper} />
+              <CamperCard key={camper.name + '3'} camper={camper} />
+            </>
+          ))}
+        </Box>
       </Container>
     </Layout>
   );

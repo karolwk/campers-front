@@ -8,7 +8,7 @@ type Props = {
 const FooterCard = ({ children, title, ...rest }: Props) => {
   return (
     <Box className={styles.card}>
-      <Typography variant="h1" fontSize={20} fontWeight="bold">
+      <Typography fontSize={'20px'} fontWeight="bold">
         {title}
       </Typography>
       {children}
