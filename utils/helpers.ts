@@ -35,7 +35,7 @@ export const makeURLPaths = (
     id: string;
   };
 }[] => {
-  // Making sure that there is no
+  // Making sure that there is no duplicates
   const uniqeNames = _.uniq(names);
 
   return uniqeNames.map((name) => {
@@ -45,4 +45,14 @@ export const makeURLPaths = (
       },
     };
   });
+};
+
+// Helper function used to return an array of amenities from string
+export const splitAmenities = (amenities: string) => {
+  // Split the string using a regular expression that matches commas outside of parentheses
+  const substrings = amenities.split(/,(?=(?:[^(]*\([^)]*\))*[^()]*$)/);
+
+  // Trim each substring and return result
+
+  return substrings.map((substring) => substring.trim());
 };
