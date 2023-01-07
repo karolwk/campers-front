@@ -3,7 +3,8 @@ import { Box, Typography, Container, Button } from '@mui/material';
 import styles from './CamperCard.module.css';
 import { Camper } from '../../../shared/types';
 import NextImage from 'next/image';
-import { formatPathtoGCS } from '../../../utils/helpers';
+import { formatPathtoGCS, makeURLfromName } from '../../../utils/helpers';
+import NextLink from 'next/link';
 
 type Props = {
   camper: Camper;
@@ -32,7 +33,9 @@ const CamperCard = ({ camper }: Props) => {
         </Box>
       ))}
       <Typography>{`od ${camper.price[0].price} zł/doba`} </Typography>
-      <Button>Opis szczegółowy</Button>
+      <NextLink href={'kampery/' + makeURLfromName(camper.name)} passHref>
+        <Button>Opis szczegółowy</Button>
+      </NextLink>
     </Box>
   );
 };
