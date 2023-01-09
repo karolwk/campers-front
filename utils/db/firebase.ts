@@ -1,9 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, QuerySnapshot } from 'firebase/firestore';
+import {
+  DocumentSnapshot,
+  getFirestore,
+  QuerySnapshot,
+} from 'firebase/firestore';
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-
+import { PageDataState } from '../../shared/types';
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
   apiKey: process.env.FIREBASE_API_KEY,
@@ -30,12 +34,28 @@ export const fetchFBData = async <T>(
   }
 };
 
+// Fetch page data and return snapshot
+
+export const fetchPageData = async (): Promise<DocumentSnapshot> => {
+  const docRef = doc(
+    db,
+    process.env.FIREBASE_DB_PAGEDATA_COL as string,
+    process.env.FIREBASE_DB_PAGEDATA_DOC as string
+  );
+  const docSnap = await getDoc(docRef);
+  return docSnap;
+};
+
 // Gets all data from refrences
 export const fetchRefs = async (refs: []) =>
   await Promise.all(
     refs.map(async (ele) => {
-      const testSnap = await getDoc(ele);
-      return testSnap.data();
+      try {
+        const testSnap = await getDoc(ele);
+        return testSnap.data();
+      } catch (error) {
+        console.log('Error in refrence fetching: ' + error);
+      }
     })
   );
 
