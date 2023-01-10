@@ -2,8 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db from '../utils/db/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { fetchPageData } from '../utils/db/firebase';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
 import { Container } from '@mui/material';
@@ -29,12 +28,7 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const docRef = doc(
-    db,
-    process.env.FIREBASE_DB_PAGEDATA_COL as string,
-    process.env.FIREBASE_DB_PAGEDATA_DOC as string
-  );
-  const docSnap = await getDoc(docRef);
+  const docSnap = await fetchPageData();
   store.dispatch(setEnt(docSnap.data() as PageDataState));
 
   return {

@@ -2,7 +2,12 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db, { fetchCampers, fetchFBData, fetchRefs } from '../utils/db/firebase';
+import db, {
+  fetchCampers,
+  fetchFBData,
+  fetchPageData,
+  fetchRefs,
+} from '../utils/db/firebase';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
@@ -104,12 +109,8 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   // propagating redux store with page settings data
-  const docSnap = await fetchFBData<PageDataState>(
-    db,
-    process.env.FIREBASE_DB_PAGEDATA_COL as string,
-    process.env.FIREBASE_DB_PAGEDATA_DOC as string
-  );
-  store.dispatch(setEnt(docSnap as PageDataState));
+  const docSnap = await fetchPageData();
+  store.dispatch(setEnt(docSnap.data() as PageDataState));
 
   // geting main page data
   const docMainPage = doc(

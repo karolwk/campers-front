@@ -2,8 +2,8 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db, { fetchCampers } from '../utils/db/firebase';
-import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
+import db, { fetchCampers, fetchPageData } from '../utils/db/firebase';
+import { getDocs, collection } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { Camper, PageDataState } from '../shared/types';
 import { Box, Container, Typography } from '@mui/material';
@@ -45,12 +45,7 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const docRef = doc(
-    db,
-    process.env.FIREBASE_DB_PAGEDATA_COL as string,
-    process.env.FIREBASE_DB_PAGEDATA_DOC as string
-  );
-  const docSnap = await getDoc(docRef);
+  const docSnap = await fetchPageData();
   store.dispatch(setEnt(docSnap.data() as PageDataState));
 
   const campersSnapshot = await getDocs(
