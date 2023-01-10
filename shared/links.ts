@@ -9,7 +9,7 @@ export const navLinks = [
   },
   {
     name: 'Kampery',
-    url: 'kampery',
+    url: '/kampery',
   },
   {
     name: 'Warunki wynajmu',
@@ -18,6 +18,6 @@ export const navLinks = [
 
   {
     name: 'Kontakt',
-    url: 'kontakt',
+    url: '/kontakt',
   },
 ];
