@@ -6,6 +6,7 @@ import db, { fetchCampers, fetchPageData } from '../../utils/db/firebase';
 import { makeURLfromName } from '../../utils/helpers';
 import type { NextPage } from 'next';
 import { setEnt } from '../../store/pageDataSlice';
+import { Box, Container, Typography } from '@mui/material';
 
 interface OtherProps {
   appProp: Camper;
@@ -21,7 +22,7 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   }
   return (
     <Layout title={appProp.name} description={appProp.description}>
-      <h3> {JSON.stringify(appProp)}</h3>
+      <Container></Container>
     </Layout>
   );
 };
