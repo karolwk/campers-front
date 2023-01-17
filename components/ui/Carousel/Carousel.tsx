@@ -3,27 +3,16 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 
 type Props = {
-  items: [];
+  items: JSX.Element[];
 };
-const items = [
-  <div className="item" data-value="1">
-    1
-  </div>,
-  <div className="item" data-value="2">
-    2
-  </div>,
-  <div className="item" data-value="3">
-    3
-  </div>,
-  <div className="item" data-value="4">
-    4
-  </div>,
-  <div className="item" data-value="5">
-    5
-  </div>,
-];
 
-const thumbItems = (items, [setThumbIndex, setThumbAnimation]) => {
+const thumbItems = (
+  items: JSX.Element[],
+  [setThumbIndex, setThumbAnimation]: [
+    React.Dispatch<React.SetStateAction<number>>,
+    React.Dispatch<React.SetStateAction<boolean>>
+  ]
+) => {
   return items.map((item, i: number) => (
     <div
       key={i}
@@ -35,7 +24,7 @@ const thumbItems = (items, [setThumbIndex, setThumbAnimation]) => {
   ));
 };
 
-const Carousel = () => {
+const Carousel = ({ items }: Props) => {
   const [mainIndex, setMainIndex] = useState(0);
   const [mainAnimation, setMainAnimation] = useState(false);
   const [thumbIndex, setThumbIndex] = useState(0);
@@ -58,11 +47,11 @@ const Carousel = () => {
     }
   };
 
-  const syncMainBeforeChange = (e) => {
+  const syncMainBeforeChange = (e: any) => {
     setMainAnimation(true);
   };
 
-  const syncMainAfterChange = (e) => {
+  const syncMainAfterChange = (e: any) => {
     setMainAnimation(false);
 
     if (e.type === 'action') {
@@ -73,7 +62,7 @@ const Carousel = () => {
     }
   };
 
-  const syncThumbs = (e) => {
+  const syncThumbs = (e: any) => {
     setThumbIndex(e.item);
     setThumbAnimation(false);
 
