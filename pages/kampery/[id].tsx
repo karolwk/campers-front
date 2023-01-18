@@ -7,10 +7,24 @@ import { makeURLfromName } from '../../utils/helpers';
 import type { NextPage } from 'next';
 import { setEnt } from '../../store/pageDataSlice';
 import { Box, Container, Typography } from '@mui/material';
+import Image from 'next/image';
+import Carousel from '../../components/ui/Carousel/Carousel';
 
 interface OtherProps {
   appProp: Camper;
 }
+
+const carouselImages = (images: string[]) => {
+  return images.map((image) => (
+    <Image
+      src={image}
+      alt="Gallery image"
+      key={image}
+      width={100}
+      height={100}
+    />
+  ));
+};
 
 const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   if (!appProp) {
@@ -20,9 +34,12 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
       </Layout>
     );
   }
+
   return (
     <Layout title={appProp.name} description={appProp.description}>
-      <Container></Container>
+      <Container>
+        <Carousel items={carouselImages(appProp.images)} />
+      </Container>
     </Layout>
   );
 };
