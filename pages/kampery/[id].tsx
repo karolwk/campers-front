@@ -3,7 +3,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Camper, PageDataState } from '../../shared/types';
 import { wrapper } from '../../store/store';
 import db, { fetchCampers, fetchPageData } from '../../utils/db/firebase';
-import { makeURLfromName } from '../../utils/helpers';
+import { formatPathtoGCS, makeURLfromName } from '../../utils/helpers';
 import type { NextPage } from 'next';
 import { setEnt } from '../../store/pageDataSlice';
 import { Box, Container, Typography } from '@mui/material';
@@ -16,13 +16,14 @@ interface OtherProps {
 
 const carouselImages = (images: string[]) => {
   return images.map((image) => (
-    <Image
-      src={image}
-      alt="Gallery image"
-      key={image}
-      width={100}
-      height={100}
-    />
+    <Box key={image} width={100} height={100}>
+      <Image
+        src={formatPathtoGCS(image)}
+        alt="Gallery image"
+        width={100}
+        height={100}
+      />
+    </Box>
   ));
 };
 
