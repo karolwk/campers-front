@@ -4,7 +4,6 @@ import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
 import db, {
   fetchCampers,
-  fetchFBData,
   fetchPageData,
   fetchRefs,
 } from '../utils/db/firebase';
