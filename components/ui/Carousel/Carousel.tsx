@@ -71,39 +71,41 @@ const Carousel = ({ items }: Props) => {
     }
   };
 
-  return [
-    <AliceCarousel
-      key="mainGallery"
-      activeIndex={mainIndex}
-      animationType="fadeout"
-      animationDuration={800}
-      disableDotsControls
-      disableButtonsControls
-      items={items}
-      mouseTracking={!thumbAnimation}
-      onSlideChange={syncMainBeforeChange}
-      onSlideChanged={syncMainAfterChange}
-      touchTracking={!thumbAnimation}
-    />,
-    <div className="thumbs" key="thumbs">
+  return (
+    <>
       <AliceCarousel
-        activeIndex={thumbIndex}
-        autoWidth
+        key="mainGallery"
+        activeIndex={mainIndex}
+        animationType="fadeout"
+        animationDuration={800}
         disableDotsControls
         disableButtonsControls
-        items={thumbs}
-        mouseTracking={false}
-        onSlideChanged={syncThumbs}
-        touchTracking={!mainAnimation}
+        items={items}
+        mouseTracking={!thumbAnimation}
+        onSlideChange={syncMainBeforeChange}
+        onSlideChanged={syncMainAfterChange}
+        touchTracking={!thumbAnimation}
       />
-      <div className="btn-prev" onClick={slidePrev}>
-        &lang;
+      <div className="thumbs" key="thumbs">
+        <AliceCarousel
+          activeIndex={thumbIndex}
+          autoWidth
+          disableDotsControls
+          disableButtonsControls
+          items={thumbs}
+          mouseTracking={false}
+          onSlideChanged={syncThumbs}
+          touchTracking={!mainAnimation}
+        />
+        <div className="btn-prev" onClick={slidePrev}>
+          &lang;
+        </div>
+        <div className="btn-next" onClick={slideNext}>
+          &rang;
+        </div>
       </div>
-      <div className="btn-next" onClick={slideNext}>
-        &rang;
-      </div>
-    </div>,
-  ];
+    </>
+  );
 };
 
 export default Carousel;
