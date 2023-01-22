@@ -72,7 +72,7 @@ const Carousel = ({ items }: Props) => {
   };
 
   return (
-    <>
+    <div>
       <AliceCarousel
         key="mainGallery"
         activeIndex={mainIndex}
@@ -104,7 +104,7 @@ const Carousel = ({ items }: Props) => {
           &rang;
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
