@@ -9,7 +9,7 @@ import { setEnt } from '../../store/pageDataSlice';
 import { Box, Container, Typography } from '@mui/material';
 import Image from 'next/image';
 import Carousel from '../../components/ui/Carousel/Carousel';
-
+import styles from '../../styles/KamperDetails.module.css';
 interface OtherProps {
   appProp: Camper;
 }
@@ -39,7 +39,22 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   return (
     <Layout title={appProp.name} description={appProp.description}>
       <Container>
-        <Carousel items={carouselImages(appProp.images)} />
+        <Box
+          sx={{
+            display: 'flex',
+            position: 'relative',
+            flexDirection: 'row',
+            gap: '20px',
+          }}
+        >
+          <Carousel items={carouselImages(appProp.images)} />
+          <Box
+            className={styles.camperDetailsBox}
+            sx={{ display: { xs: 'none', md: 'block' } }}
+          >
+            Test
+          </Box>
+        </Box>
       </Container>
     </Layout>
   );
