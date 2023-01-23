@@ -16,13 +16,11 @@ interface OtherProps {
 
 const carouselImages = (images: string[]) => {
   return images.map((image) => (
-    <Box key={image} width={100} height={100}>
-      <Image
-        src={formatPathtoGCS(image)}
-        alt="Gallery image"
-        width={100}
-        height={100}
-      />
+    <Box
+      key={image}
+      sx={{ position: 'relative', width: '100px', height: '100px' }}
+    >
+      <Image src={formatPathtoGCS(image)} alt="Gallery image" layout="fill" />
     </Box>
   ));
 };
@@ -39,20 +37,15 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   return (
     <Layout title={appProp.name} description={appProp.description}>
       <Container>
-        <Box
-          sx={{
-            display: 'flex',
-            position: 'relative',
-            flexDirection: 'row',
-            gap: '20px',
-          }}
-        >
+        <Box sx={{ maxWidth: '1000px' }}>
           <Carousel items={carouselImages(appProp.images)} />
-          <Box
-            className={styles.camperDetailsBox}
-            sx={{ display: { xs: 'none', md: 'block' } }}
-          >
-            Test
+          <Box>
+            <Box
+              className={styles.camperDetailsBox}
+              sx={{ display: { xs: 'none', md: 'block' } }}
+            >
+              Test
+            </Box>
           </Box>
         </Box>
       </Container>

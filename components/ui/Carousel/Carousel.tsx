@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
 
 type Props = {
   items: JSX.Element[];
 };
 
+//make thumbnails
 const thumbItems = (
   items: JSX.Element[],
   [setThumbIndex, setThumbAnimation]: [
@@ -72,7 +72,7 @@ const Carousel = ({ items }: Props) => {
   };
 
   return (
-    <div>
+    <>
       <AliceCarousel
         key="mainGallery"
         activeIndex={mainIndex}
@@ -104,7 +104,7 @@ const Carousel = ({ items }: Props) => {
           &rang;
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
