@@ -1,5 +1,6 @@
 .camperDetailsBox {
   max-height: calc(100vh - 10rem);
+  position: fixed;
   overflow: auto;
   background: #fff;
   border-radius: 1rem;

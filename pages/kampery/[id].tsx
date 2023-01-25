@@ -37,14 +37,17 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   return (
     <Layout title={appProp.name} description={appProp.description}>
       <Container>
-        <Box sx={{ maxWidth: '1000px' }}>
-          <Carousel items={carouselImages(appProp.images)} />
+        <Box sx={{ display: 'flex', direction: 'row' }}>
+          <Box sx={{ maxWidth: '500px' }}>
+            <Carousel items={carouselImages(appProp.images)} />
+          </Box>
           <Box>
             <Box
               className={styles.camperDetailsBox}
               sx={{ display: { xs: 'none', md: 'block' } }}
             >
-              Test
+              <Typography>{appProp.name}</Typography>
+              <Typography>{appProp.location}</Typography>
             </Box>
           </Box>
         </Box>
