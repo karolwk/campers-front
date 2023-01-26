@@ -70,7 +70,7 @@ export interface Camper {
     info: string;
   }[];
   technicals: CamperTechnicals;
-  mainAmenities?: MainAmenities[];
+  mainAmenities?: string[];
 }
 
 type MainAmenities = {
