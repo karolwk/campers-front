@@ -6,10 +6,12 @@ import db, { fetchCampers, fetchPageData } from '../../utils/db/firebase';
 import { formatPathtoGCS, makeURLfromName } from '../../utils/helpers';
 import type { NextPage } from 'next';
 import { setEnt } from '../../store/pageDataSlice';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, Divider } from '@mui/material';
 import Image from 'next/image';
 import Carousel from '../../components/ui/Carousel/Carousel';
 import styles from '../../styles/KamperDetails.module.css';
+import ListWithIcon from '../../components/ui/ListWithIcon/ListWithIcon';
+import PriceCard from '../../components/cards/PriceCard/PriceCard';
 interface OtherProps {
   appProp: Camper;
 }
@@ -48,6 +50,14 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
             >
               <Typography>{appProp.name}</Typography>
               <Typography>{appProp.location}</Typography>
+              <Divider light />
+              <ListWithIcon items={appProp.mainAmenities} />
+              <Divider light />
+              <Typography>Cennik:</Typography>
+              {appProp.price.map((price) => (
+                <PriceCard key={price.season} price={price} />
+              ))}
+              <Typography>{appProp.additionalPriceInfo}</Typography>
             </Box>
           </Box>
         </Box>
