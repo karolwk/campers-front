@@ -41,10 +41,10 @@ const Footer = (props: Props) => {
         </FooterCard>
         <FooterCard title="Sociale">test</FooterCard>
         <FooterCard title="">
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Button>Zadzwoń do nas</Button>
-            <Button>Napisz do nas</Button>
-            <Button>Zobacz na mapie</Button>
+          <Box className={styles.butonContainer}>
+            <Button variant="outlined">Zadzwoń do nas</Button>
+            <Button variant="outlined">Napisz do nas</Button>
+            <Button variant="outlined">Zobacz na mapie</Button>
           </Box>
         </FooterCard>
       </Container>
