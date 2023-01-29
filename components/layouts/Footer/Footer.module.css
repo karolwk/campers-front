@@ -13,3 +13,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.butonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
