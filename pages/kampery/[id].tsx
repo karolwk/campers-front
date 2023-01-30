@@ -18,12 +18,13 @@ interface OtherProps {
 
 const carouselImages = (images: string[]) => {
   return images.map((image) => (
-    <Box
+    <Image
       key={image}
-      sx={{ position: 'relative', width: '100px', height: '100px' }}
-    >
-      <Image src={formatPathtoGCS(image)} alt="Gallery image" layout="fill" />
-    </Box>
+      src={formatPathtoGCS(image)}
+      alt="Gallery image"
+      layout="fill"
+      objectFit="cover"
+    />
   ));
 };
 
