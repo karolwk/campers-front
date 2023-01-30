@@ -5,6 +5,14 @@ type Props = {
   items: JSX.Element[];
 };
 
+const mainItems = (items: JSX.Element[]) => {
+  return items.map((item, i: number) => (
+    <div key={i + 'mainGallery'} className="test">
+      {item}
+    </div>
+  ));
+};
+
 //make thumbnails
 const thumbItems = (
   items: JSX.Element[],
@@ -80,12 +88,13 @@ const Carousel = ({ items }: Props) => {
         animationDuration={800}
         disableDotsControls
         disableButtonsControls
-        items={items}
+        items={mainItems(items)}
         mouseTracking={!thumbAnimation}
         onSlideChange={syncMainBeforeChange}
         onSlideChanged={syncMainAfterChange}
         touchTracking={!thumbAnimation}
       />
+
       <div className="thumbs" key="thumbs">
         <AliceCarousel
           activeIndex={thumbIndex}
