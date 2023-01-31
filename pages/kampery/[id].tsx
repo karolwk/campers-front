@@ -56,7 +56,7 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
               <Divider light />
               <Typography>Cennik:</Typography>
               {appProp.price.map((price) => (
-                <PriceCard key={price.season} price={price} />
+                <PriceCard key={price.season + price} price={price} />
               ))}
               <Typography>{appProp.additionalPriceInfo}</Typography>
             </Box>
