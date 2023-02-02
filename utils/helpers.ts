@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import uniq from 'lodash/uniq';
 
 export const formatPhone = (number: string): string => {
   let newNumber = number.replace(/\D+/g, '');
@@ -36,7 +36,7 @@ export const makeURLPaths = (
   };
 }[] => {
   // Making sure that there is no duplicates
-  const uniqeNames = _.uniq(names);
+  const uniqeNames = uniq(names);
 
   return uniqeNames.map((name) => {
     return {
