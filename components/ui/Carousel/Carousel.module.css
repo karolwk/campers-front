@@ -1,0 +1,21 @@
+.thumbs {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 100px;
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+
+.thumb {
+  width: 100px;
+  height: 66px;
+
+  position: relative;
+}
+
+.mainGalleryBox {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
