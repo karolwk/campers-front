@@ -66,16 +66,16 @@ export interface Camper {
   additionalPriceInfo: string;
   price: {
     price: number;
-    season: string;
+    sesons: string;
     info: string;
   }[];
   technicals: CamperTechnicals;
-  mainAmenities?: string[];
+  mainAmenities?: MainAmenities[];
 }
 
-type MainAmenities = {
+export type MainAmenities = {
   name: string;
-  icon: Icons;
+  icon: string;
 };
 
 type Icons = {
