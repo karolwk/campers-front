@@ -1,20 +1,24 @@
 import React from 'react';
 import { Box, Typography, Container, Button } from '@mui/material';
+import styles from './PriceCard.module.css';
 
 type Props = {
   price: {
     price: number;
-    season: string;
+    sesons: string;
     info: string;
   };
 };
 
 const PriceCard = ({ price }: Props) => {
   return (
-    <Box>
-      <Typography>{price.price + 'zł / doba'}</Typography>
-      <Typography>{price.season}</Typography>
-      <Typography>{price.info}</Typography>
+    <Box className={styles.container}>
+      <Typography>{price.sesons}</Typography>
+      <Typography className={styles.price}>
+        {price.price + 'zł / doba'}
+      </Typography>
+
+      <Typography variant="caption">{price.info}</Typography>
     </Box>
   );
 };
