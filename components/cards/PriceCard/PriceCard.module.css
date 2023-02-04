@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px var(--primary) solid;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  margin-bottom: 5px;
+}
+
+.price {
+  font-size: 1.3rem;
+}
