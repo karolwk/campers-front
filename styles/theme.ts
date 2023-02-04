@@ -1,5 +1,13 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
+const colors = {
+  primary: '#1C6758',
+  secondary: '#4CAF50',
+  error: '#F44336',
+  background: '#FAFAFA',
+  text: '#212121',
+};
+
 let theme = createTheme({
   typography: {
     fontFamily: [
@@ -17,7 +25,7 @@ let theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#1C6758',
+      main: colors.primary,
     },
   },
 });
