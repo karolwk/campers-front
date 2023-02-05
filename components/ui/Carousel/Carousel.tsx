@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
+import styles from './Carousel.module.css';
 
 type Props = {
   items: JSX.Element[];
@@ -7,7 +8,7 @@ type Props = {
 
 const mainItems = (items: JSX.Element[]) => {
   return items.map((item, i: number) => (
-    <div key={i + 'mainGallery'} className="test">
+    <div key={i + 'mainGallery'} className={styles.mainGalleryBox}>
       {item}
     </div>
   ));
@@ -24,7 +25,7 @@ const thumbItems = (
   return items.map((item, i: number) => (
     <div
       key={i}
-      className="thumb"
+      className={styles.thumb}
       onClick={() => (setThumbIndex(i), setThumbAnimation(true))}
     >
       {item}
@@ -95,7 +96,7 @@ const Carousel = ({ items }: Props) => {
         touchTracking={!thumbAnimation}
       />
 
-      <div className="thumbs" key="thumbs">
+      <div className={styles.thumbs} key="thumbs">
         <AliceCarousel
           activeIndex={thumbIndex}
           autoWidth
