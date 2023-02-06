@@ -6,8 +6,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/* Global varibles */
 :root {
-  --blue: #1e90ff;
+  /* Colors */
+  --primary: #1c6758;
+  /* Shadows */
+  --shadow: 0 4px 8px 0 rgb(27 64 67 / 10%);
 }
 
 .MuiToolbar-root {
@@ -35,6 +39,7 @@ body {
     visibility: hidden;
   }
 }
+
 .alice-carousel {
   position: relative;
   width: 100%;
@@ -216,22 +221,4 @@ body {
 .alice-carousel__slide-info-item {
   vertical-align: middle;
   line-height: 0;
-}
-.thumbs {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 100px;
-  position: relative;
-}
-
-.thumb {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-}
-
-.test {
-  position: relative;
-  width: 100%;
-  height: 400px;
 }
