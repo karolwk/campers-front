@@ -1,9 +1,17 @@
-import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Icon,
+} from '@mui/material';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import React from 'react';
-List;
+
+import { MainAmenities } from '../../../shared/types';
+
 type Props = {
-  items?: string[];
+  items?: MainAmenities[];
   dense?: boolean;
 };
 
@@ -15,11 +23,11 @@ const ListWithIcon = ({ items, dense = false }: Props) => {
   return (
     <List dense={dense}>
       {items.map((item) => (
-        <ListItem key={item}>
+        <ListItem key={item.name}>
           <ListItemIcon>
-            <CheckBoxOutlinedIcon />
+            <Icon>{item.icon}</Icon>
           </ListItemIcon>
-          <ListItemText primary={item} />
+          <ListItemText primary={item.name} />
         </ListItem>
       ))}
     </List>
