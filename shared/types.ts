@@ -37,7 +37,7 @@ export interface MainPageData {
   faq: FaqMainPage[];
 }
 
-interface CamperTechnicals {
+export interface CamperTechnicals {
   brand: string;
   model: string;
   year: string;
