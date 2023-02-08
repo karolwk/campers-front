@@ -10,6 +10,13 @@ const colors = {
 
 let theme = createTheme({
   typography: {
+    h1: {
+      fontSize: '3rem',
+      fontWeight: 400,
+    },
+    h2: {
+      fontSize: '2rem',
+    },
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
