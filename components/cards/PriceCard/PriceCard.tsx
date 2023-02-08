@@ -18,7 +18,9 @@ const PriceCard = ({ price }: Props) => {
         {price.price + 'zł / doba'}
       </Typography>
 
-      <Typography variant="caption">{price.info}</Typography>
+      <Typography variant="caption" className={styles.priceInfo}>
+        {price.info}
+      </Typography>
     </Box>
   );
 };
