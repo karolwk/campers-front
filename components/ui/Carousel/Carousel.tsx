@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import styles from './Carousel.module.css';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import IconButton from '@mui/material/IconButton';
 
 type Props = {
   items: JSX.Element[];
@@ -85,7 +88,7 @@ const Carousel = ({ items }: Props) => {
       <AliceCarousel
         key="mainGallery"
         activeIndex={mainIndex}
-        animationType="fadeout"
+        animationType="slide"
         animationDuration={800}
         disableDotsControls
         disableButtonsControls
@@ -107,12 +110,20 @@ const Carousel = ({ items }: Props) => {
           onSlideChanged={syncThumbs}
           touchTracking={!mainAnimation}
         />
-        <div className="btn-prev" onClick={slidePrev}>
-          &lang;
-        </div>
-        <div className="btn-next" onClick={slideNext}>
-          &rang;
-        </div>
+        <IconButton
+          aria-label="gallery previous button"
+          className={styles.btnPrev}
+          onClick={slidePrev}
+        >
+          <NavigateBeforeIcon fontSize="large" />
+        </IconButton>
+        <IconButton
+          aria-label="gallery next button"
+          className={styles.btnNext}
+          onClick={slideNext}
+        >
+          <NavigateNextIcon fontSize="large" />
+        </IconButton>
       </div>
     </>
   );
