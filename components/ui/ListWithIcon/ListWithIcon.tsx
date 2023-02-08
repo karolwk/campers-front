@@ -5,7 +5,6 @@ import {
   ListItemText,
   Icon,
 } from '@mui/material';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import React from 'react';
 
 import { MainAmenities } from '../../../shared/types';
