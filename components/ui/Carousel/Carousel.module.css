@@ -10,6 +10,9 @@
 .thumb {
   width: 100px;
   height: 66px;
+  padding: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
 
   position: relative;
 }
@@ -18,4 +21,28 @@
   position: relative;
   width: 600px;
   height: 400px;
+}
+
+.btnPrev {
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btnNext {
+  position: absolute;
+  right: 1%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 600px) {
+  .mainGalleryBox {
+    width: 400px;
+    height: 266px;
+  }
+  .thumbs {
+    padding: 0 50px;
+  }
 }
