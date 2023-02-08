@@ -7,7 +7,7 @@ import {
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { PageDataState } from '../../shared/types';
+
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
   apiKey: process.env.FIREBASE_API_KEY,
@@ -72,12 +72,12 @@ export const fetchCampers = async (campersSnapshot: QuerySnapshot) => {
       // get data for each amenity
       camper.mainAmenities = await fetchRefs(camper.mainAmenities);
       // get data for icons
-      camper.mainAmenities = await Promise.all(
-        camper.mainAmenities.map(async (amenitie: any) => {
-          amenitie.icon = (await getDoc(amenitie.icon)).data();
-          return amenitie;
-        })
-      );
+      // camper.mainAmenities = await Promise.all(
+      //   camper.mainAmenities.map(async (amenitie: any) => {
+      //     amenitie.icon = (await getDoc(amenitie.icon)).data();
+      //     return amenitie;
+      //   })
+      // );
       return camper;
     })
   );
