@@ -1,5 +1,5 @@
 .navbar {
-  background-color: transparent;
+  background-color: white;
   color: black;
   display: flex;
 }
@@ -12,4 +12,12 @@
 
 .menu {
   justify-self: right;
+}
+.toolbar img:first-of-type {
+  cursor: pointer;
+}
+
+.contactData {
+  display: flex;
+  gap: 0.5rem;
 }
