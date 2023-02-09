@@ -18,8 +18,12 @@ import { useAppSelector } from '../../../hooks/reduxHooks';
 import MenuIcon from '@mui/icons-material/Menu';
 import MobileMenu from '../../menu/MobileMenu/MobileMenu';
 import { Navlinks } from '../../../shared/types';
-
+import Image from 'next/image';
 import Link from 'next/link';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
+
+import { formatPhone } from '../../../utils/helpers';
 
 interface Props {
   navLinks: Navlinks;
@@ -62,11 +66,18 @@ export default function NavBar({ navLinks, ...props }: Props) {
       </MobileDrawer>
       <ElevationScroll {...props}>
         <AppBar className={styles.navbar}>
-          <Container>
-            <Toolbar className={styles.toolbar} component="nav">
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Logo
-              </Typography>
+          <Container component="nav">
+            <Toolbar className={styles.toolbar}>
+              <Box sx={{ flexGrow: 1 }}>
+                <Link href="/">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Logo"
+                    width={150}
+                    height={80}
+                  />
+                </Link>
+              </Box>
 
               <IconButton
                 color="inherit"
@@ -83,8 +94,14 @@ export default function NavBar({ navLinks, ...props }: Props) {
                 className={styles.menu}
               >
                 <Box sx={{ paddingLeft: '10px', display: 'flex', gap: '20px' }}>
-                  <Typography>{navData.email}</Typography>
-                  <Typography>{navData.phone}</Typography>
+                  <Typography className={styles.contactData}>
+                    <EmailIcon color="primary" />
+                    {navData.email}
+                  </Typography>
+                  <Typography className={styles.contactData}>
+                    <PhoneIcon color="primary" />
+                    {formatPhone(navData.phone)}
+                  </Typography>
                 </Box>
                 {navLinks.map((item) => (
                   <Link href={item.url} key={item.name} passHref>
@@ -102,7 +119,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
       <Toolbar id="back-to-top-anchor" />
 
       <ScrollTop>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
+        <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
