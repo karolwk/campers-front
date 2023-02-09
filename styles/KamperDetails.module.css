@@ -1,11 +1,85 @@
+.galleryBox {
+  max-width: 600px;
+}
+
+.camperDetailsWraper {
+  width: 400px;
+  position: relative;
+}
+
 .camperDetailsBox {
   max-height: calc(100vh - 10rem);
   position: fixed;
   overflow: auto;
   background: #fff;
   border-radius: 1rem;
-  box-shadow: 0 4px 8px 0 rgb(27 64 67 / 10%);
+  box-shadow: var(--shadow);
   max-width: 400px;
   min-width: 200px;
-  padding: 1rem;
+  padding: 2rem;
+  z-index: 10;
+  animation-name: moveInFromRight;
+  animation-duration: 3s;
+}
+
+.camperDetailsSection {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.contentRow {
+  width: 50%;
+}
+
+.amenitiesBox {
+  margin-bottom: 2rem;
+}
+
+@keyframes moveInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .camperDetailsSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .camperDetailsWraper {
+    width: 100%;
+  }
+
+  .contentRow {
+    width: 100%;
+  }
+  .camperDetailsBox {
+    padding: 0;
+    position: relative;
+    max-height: none;
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    z-index: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .galleryBox {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .galleryBox {
+    max-width: 300px;
+  }
 }

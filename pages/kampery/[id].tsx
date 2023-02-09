@@ -12,6 +12,10 @@ import Carousel from '../../components/ui/Carousel/Carousel';
 import styles from '../../styles/KamperDetails.module.css';
 import ListWithIcon from '../../components/ui/ListWithIcon/ListWithIcon';
 import PriceCard from '../../components/cards/PriceCard/PriceCard';
+import ReactMarkdown from 'react-markdown';
+import ListOfAmenities from '../../components/ui/ListOfAmenities/ListOfAmenities';
+import TechnicalTable from '../../components/tables/TechnicalTable/TechnicalTable';
+
 interface OtherProps {
   appProp: Camper;
 }
@@ -24,6 +28,7 @@ const carouselImages = (images: string[]) => {
       alt="Gallery image"
       layout="fill"
       objectFit="cover"
+      loading="lazy"
     />
   ));
 };
@@ -40,15 +45,12 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   return (
     <Layout title={appProp.name} description={appProp.description}>
       <Container>
-        <Box sx={{ display: 'flex', direction: 'row' }}>
-          <Box sx={{ maxWidth: '500px' }}>
+        <Box component="section" className={styles.camperDetailsSection}>
+          <Box className={styles.galleryBox}>
             <Carousel items={carouselImages(appProp.images)} />
           </Box>
-          <Box>
-            <Box
-              className={styles.camperDetailsBox}
-              sx={{ display: { xs: 'none', md: 'block' } }}
-            >
+          <Box className={styles.camperDetailsWraper}>
+            <Box className={styles.camperDetailsBox}>
               <Typography>{appProp.name}</Typography>
               <Typography>{appProp.location}</Typography>
               <Divider light />
@@ -56,10 +58,40 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
               <Divider light />
               <Typography>Cennik:</Typography>
               {appProp.price.map((price) => (
-                <PriceCard key={price.season + price} price={price} />
+                <PriceCard key={price.sesons + price} price={price} />
               ))}
               <Typography>{appProp.additionalPriceInfo}</Typography>
             </Box>
+          </Box>
+        </Box>
+        <Box component="section" className={styles.contentSection}>
+          <Box className={styles.contentRow}>
+            <Typography variant="h1" align="center">
+              {appProp.name}
+            </Typography>
+
+            <ReactMarkdown>{appProp.description}</ReactMarkdown>
+            <ListOfAmenities
+              title="Wyposażenie"
+              amenities={appProp.genericAmenities}
+              className={styles.amenitiesBox}
+            />
+            <ListOfAmenities
+              title="Kuchnia"
+              amenities={appProp.kitchenAmenities}
+              className={styles.amenitiesBox}
+            />
+            <ListOfAmenities
+              title="Część użytkowa"
+              amenities={appProp.usableAmenities}
+              className={styles.amenitiesBox}
+            />
+            <ListOfAmenities
+              title="Akcesoria dodatkowe"
+              amenities={appProp.additionalEquipment}
+              className={styles.amenitiesBox}
+            />
+            <TechnicalTable technicals={appProp.technicals} />
           </Box>
         </Box>
       </Container>
