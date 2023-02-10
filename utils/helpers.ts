@@ -1,6 +1,7 @@
 import uniq from 'lodash/uniq';
 
 export const formatPhone = (number: string): string => {
+  // leaves only numbers
   let newNumber = number.replace(/\D+/g, '');
   if (newNumber.length !== 9) return number;
 
@@ -50,7 +51,7 @@ export const makeURLPaths = (
 // Helper function used to return an array of amenities from string
 export const splitAmenities = (amenities: string) => {
   // Split the string using a regular expression that matches commas outside of parentheses
-  const substrings = amenities.split(/,(?=(?:[^(]*\([^)]*\))*[^()]*$)/);
+  const substrings = amenities.split(/(?!\([^)]*),(?![^(]*\))/g);
 
   // Trim each substring and return result
 
