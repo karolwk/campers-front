@@ -22,7 +22,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-
+import MuiLink from '@mui/material/Link';
 import { formatPhone } from '../../../utils/helpers';
 
 interface Props {
@@ -69,13 +69,15 @@ export default function NavBar({ navLinks, ...props }: Props) {
           <Container component="nav">
             <Toolbar className={styles.toolbar}>
               <Box sx={{ flexGrow: 1 }}>
-                <Link href="/">
-                  <Image
-                    src="/images/logo.png"
-                    alt="Logo"
-                    width={150}
-                    height={80}
-                  />
+                <Link href="/" passHref>
+                  <MuiLink>
+                    <Image
+                      src="/images/logo.png"
+                      alt="Logo"
+                      width={150}
+                      height={80}
+                    />
+                  </MuiLink>
                 </Link>
               </Box>
 
