@@ -1,11 +1,12 @@
-import { Box } from '@mui/material';
-import React, { FC, PropsWithChildren, forwardRef } from 'react';
+import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
 
+import { BoxProps } from '@mui/material';
 import useOnScreen from '../../../hooks/useOnScreen';
 
-interface AnimateInProps {
+interface AnimateInProps extends BoxProps {
   from: React.CSSProperties;
   to: React.CSSProperties;
+  transition?: string;
   component: React.ElementType;
 }
 
@@ -14,15 +15,30 @@ const AnimateIn: FC<PropsWithChildren<AnimateInProps>> = ({
   to,
   component: Component,
   children,
+  transition = '600ms ease-in-out',
+  ...rest
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const [rendered, setRendered] = useState(false);
   const onScreen = useOnScreen(ref);
-  const defaultStyles: React.CSSProperties = {
-    transition: '600ms ease-in-out',
-  };
-  const dynamicStyles: React.CSSProperties = onScreen ? to : from;
+
+  let dynamicStyles: React.CSSProperties = {};
+  if (!rendered) {
+    dynamicStyles = onScreen ? to : from;
+  }
+
+  useEffect(() => {
+    if (onScreen) {
+      setRendered(true);
+    }
+  }, [onScreen]);
+
   return (
-    <Component ref={ref} style={{ ...defaultStyles, ...dynamicStyles }}>
+    <Component
+      ref={ref}
+      style={{ transition: `${transition}`, ...dynamicStyles }}
+      {...rest}
+    >
       {children}
     </Component>
   );
