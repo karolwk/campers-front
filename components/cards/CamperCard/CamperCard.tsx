@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Icon, Button } from '@mui/material';
+import { Box, Typography, Icon, Button, Paper } from '@mui/material';
 import styles from './CamperCard.module.css';
 import { Camper } from '../../../shared/types';
 import NextImage from 'next/image';
@@ -12,7 +12,7 @@ type Props = {
 
 const CamperCard = ({ camper }: Props) => {
   return (
-    <Box className={styles.camperBox}>
+    <Paper className={styles.camperBox} elevation={3}>
       <Box>
         <NextImage
           src={formatPathtoGCS(camper.mainImage)}
@@ -21,18 +21,26 @@ const CamperCard = ({ camper }: Props) => {
           width={100}
         ></NextImage>
       </Box>
-      <Typography variant="h2">{camper.name}</Typography>
-      {camper.mainAmenities?.map((amenity) => (
-        <Box key={amenity.name} className={styles.iconBox}>
-          <Icon>{amenity.icon}</Icon>
-          <Typography>{amenity.name}</Typography>
-        </Box>
-      ))}
-      <Typography>{`od ${camper.price[0].price} zł/doba`} </Typography>
+      <Typography variant="h6" align="center">
+        {camper.name}
+      </Typography>
+      <Box>
+        {camper.mainAmenities?.map((amenity) => (
+          <Box key={amenity.name} className={styles.iconBox}>
+            <Icon>{amenity.icon}</Icon>
+            <Typography>{amenity.name}</Typography>
+          </Box>
+        ))}
+      </Box>
+      <Typography fontSize={19} marginY="1rem" color="primary">
+        {`od ${camper.price[0].price} zł/doba`}
+      </Typography>
       <NextLink href={'kampery/' + makeURLfromName(camper.name)} passHref>
-        <Button>Opis szczegółowy</Button>
+        <Button variant="contained" color="success" size="large">
+          Opis szczegółowy
+        </Button>
       </NextLink>
-    </Box>
+    </Paper>
   );
 };
 
