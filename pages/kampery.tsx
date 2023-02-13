@@ -9,6 +9,8 @@ import { Camper, PageDataState } from '../shared/types';
 import { Box, Container, Typography } from '@mui/material';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
 import styles from '../styles/Kampery.module.css';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+
 interface OtherProps {
   campers: Camper[];
 }
@@ -22,23 +24,22 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
     >
       <Container>
         <Box className={styles.camperboxHeader}>
-          <Typography variant="h2">Nasze kampery</Typography>
+          <Typography variant="h2" fontWeight={500}>
+            Nasze kampery
+          </Typography>
           <Typography variant="subtitle1">
             Nasze kampery są w pełni wyposażone, łatwe w obsłudze i idealne na
             kempingowe wyjazdy. Od spokojnego weekendu po eksplorowanie Europy,
             możliwości są nieograniczone!
           </Typography>
         </Box>
-        <Box className={styles.camperboxMain}>
+        <Grid2 container spacing={5} marginY="2rem">
           {campers.map((camper) => (
-            <>
-              <CamperCard key={camper.name} camper={camper} />
-              <CamperCard key={camper.name + '1'} camper={camper} />
-              <CamperCard key={camper.name + '2'} camper={camper} />
-              <CamperCard key={camper.name + '3'} camper={camper} />
-            </>
+            <Grid2 key={camper.name} xs={12} sm={6} md={4}>
+              <CamperCard camper={camper} />
+            </Grid2>
           ))}
-        </Box>
+        </Grid2>
       </Container>
     </Layout>
   );
