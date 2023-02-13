@@ -10,98 +10,138 @@ import db, {
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography, Paper } from '@mui/material';
 import styles from '../styles/Home.module.css';
 import { MainPageData, Camper } from '../shared/types';
 import IconCard from '../components/cards/IconCard/IconCard';
 import ReactMarkdown from 'react-markdown';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
 import FaqAccordion from '../components/ui/FaqAccordion/FaqAccordion';
-
+import Link from 'next/link';
+import { Animate } from '../components/animations/Animate/Animate';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 type HomeProps = {
   mainPage: MainPageData;
   campers: Camper[];
 };
 
 const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
-  console.log(campers);
   return (
-    <Layout title="Kampery na wynajem" description="Wynajem kamperow Wieliczka">
-      <Box sx={{ position: 'relative', minHeight: '40vw' }}>
+    <Layout
+      title="Kampery na wynajem"
+      description="Nasza firma oferuje wynajem w pełni wyposażonych i przystosowanych do podróży kamperów. Sami jesteśmy pasjonatami aktywności turystycznych i odwiedzania różnorodnych zakątków świata. Chętnie doradzamy naszym klientom, jak odpowiednio zorganizować podróż kamperem i o czym należy pamiętać."
+    >
+      <Box component="section" className={styles.mainImageSection}>
         <Image
           src="/images/background.jpg"
           alt="dia"
           layout="fill"
           objectFit="cover"
+          priority
         />
-        <Typography
-          variant="h1"
-          sx={{
-            zIndex: '1000',
-            fontSize: '2rem',
-            position: 'absolute',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            bottom: '30%',
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-          }}
-        >
-          Wynajmnij kampera
-        </Typography>
+        <Box className={styles.imageSectionBox}>
+          <Typography variant="h1">Wakacje bez granic</Typography>
+          <Typography variant="subtitle1" fontSize={20}>
+            Luksusowe kampery dla Ciebie
+          </Typography>
+          <Link href="/kampery" passHref>
+            <Button
+              variant="contained"
+              color="success"
+              size="large"
+              className={styles.bigButton}
+            >
+              Sprawdź naszą ofertę
+            </Button>
+          </Link>
+        </Box>
       </Box>
 
       <Container component="section">
-        <Typography variant="h2">Dlaczego my</Typography>
+        <Typography
+          variant="h2"
+          className={styles.sectionTitle}
+          marginTop={'2rem'}
+        >
+          Dlaczego my
+        </Typography>
         <Box className={styles.icons}>
           {mainPage.icons.map((icon) => {
             return (
-              <IconCard
+              <Animate.ScaleIn
                 key={icon.title}
-                iconURL={icon.iconURL}
-                iconTitle={icon.title}
-                iconDescription={icon.description}
-              />
+                component={Box}
+                sx={{ flex: 1 }}
+              >
+                <IconCard
+                  iconURL={icon.iconURL}
+                  iconTitle={icon.title}
+                  iconDescription={icon.description}
+                />
+              </Animate.ScaleIn>
             );
           })}
         </Box>
       </Container>
-      <Box sx={{ backgroundColor: '#EEF2E6' }}>
-        <Container component="section">
-          <Typography variant="h2">{mainPage.teaserTitle}</Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
 
-              gap: '100px',
-            }}
-          >
+      <Box className={styles.aboutSection}>
+        <Typography variant="h2" className={styles.sectionTitle}>
+          {mainPage.teaserTitle}
+        </Typography>
+        <Container
+          component="section"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+          }}
+        >
+          <Animate.FadeIn component={Box} className={styles.circleBox}>
             <Image
               src="/images/kampery-na-wynajem-o-nas.jpg"
-              width="318"
-              height="378"
+              width={318}
+              height={378}
               alt={mainPage.teaserTitle + ' obraz'}
             ></Image>
-            <Box sx={{ maxWidth: '512px' }}>
-              <ReactMarkdown>{mainPage.teaserContent}</ReactMarkdown>
-            </Box>
-          </Box>
+          </Animate.FadeIn>
+
+          <Animate.FadeUp component={Box} sx={{ maxWidth: '512px' }}>
+            <ReactMarkdown className="">{mainPage.teaserContent}</ReactMarkdown>
+          </Animate.FadeUp>
         </Container>
       </Box>
-      <Container>
-        <Typography variant="h2">{mainPage.campersTitle}</Typography>
-        <Typography variant="subtitle1">
+      <Container className={styles.campersSetion}>
+        <Typography variant="h2" align="center" fontWeight={500}>
+          {mainPage.campersTitle}
+        </Typography>
+        <Typography variant="subtitle1" align="center">
           {mainPage.campersDescription}
         </Typography>
-        {campers.map((camper) => (
-          <CamperCard key={camper.name} camper={camper} />
-        ))}
+        <Grid2 container spacing={4} marginY={'2rem'}>
+          {campers.map((camper) => (
+            <Grid2 xs={12} sm={6} md={4} key={camper.name}>
+              <CamperCard camper={camper} />
+            </Grid2>
+          ))}
+        </Grid2>
       </Container>
-      <Container sx={{ position: 'relative' }}>
-        <FaqAccordion faq={mainPage.faq} />
-      </Container>
+      <Typography variant="h2" align="center" fontWeight={500} marginY="2rem">
+        Najczęsciej zadawane pytania
+      </Typography>
+      <Box sx={{ position: 'relative' }} height="70vh">
+        <Image
+          src="/images/bg-droga.jpg"
+          alt="dia"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="bottom"
+          priority
+        />
+        <Container component="section" className={styles.faqSection}>
+          <FaqAccordion faq={mainPage.faq} />
+        </Container>
+      </Box>
     </Layout>
   );
 };
