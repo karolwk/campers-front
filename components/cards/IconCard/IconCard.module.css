@@ -2,12 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 260px;
+  height: 100%;
+  min-width: 260px;
   padding: 2rem;
   gap: 1rem;
-  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
-  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .title {
@@ -15,6 +13,7 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+  text-align: center;
   min-height: 64px;
 }
 
@@ -22,29 +21,4 @@
   min-width: 100px;
   border-color: var(--tertiary);
   border-width: 2px;
-}
-
-@-webkit-keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-  }
 }
