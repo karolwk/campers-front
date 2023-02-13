@@ -1,10 +1,108 @@
-.main {
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .icons {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.mainImageSection {
+  position: relative;
+  min-height: 40vw;
+}
+
+.imageSectionBox {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 10px;
+}
+.imageSectionBox :is(h1, h6, a) {
+  color: white;
+  margin-bottom: 0.2rem;
+  text-shadow: 1px 2px black;
+  animation-name: moveInFromRight;
+  animation-duration: 2s;
+}
+
+.bigButton {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* About Section */
+
+.aboutSection {
+  padding: 3rem;
+  background-color: var(--quaternary);
+}
+
+.circleBox {
+  overflow: hidden;
+  border-radius: 30px;
+  min-width: 318px;
+  position: relative;
+  margin-bottom: 1rem;
+  height: 378px;
+}
+
+.circleBox span {
+  transition: transform 0.2s ease-out; /* Animation */
+}
+
+.circleBox span:hover {
+  transform: scale(1.3);
+}
+
+/* Our Campers Section  */
+
+.campersSetion {
+  margin-top: 2rem;
+}
+
+/* Faq Section */
+
+.faqSection {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes moveInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainImageSection {
+    min-height: 350px;
+  }
+  .imageSectionBox h1 {
+    font-size: 2rem;
+  }
+  .imageSectionBox h6 {
+    font-size: 1rem;
+  }
+
+  .bigButton {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
 }
