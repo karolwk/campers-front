@@ -13,18 +13,21 @@ type Props = {
 const CamperCard = ({ camper }: Props) => {
   return (
     <Paper className={styles.camperBox} elevation={3}>
-      <Box>
-        <NextImage
-          src={formatPathtoGCS(camper.mainImage)}
-          alt={camper.name + ' obraz'}
-          height={100}
-          width={100}
-        ></NextImage>
+      <Box className={styles.topBox}>
+        <Paper className={styles.imageWrapper}>
+          <NextImage
+            src={formatPathtoGCS(camper.mainImage)}
+            alt={camper.name + ' obraz'}
+            height={166}
+            width={250}
+          ></NextImage>
+        </Paper>
+        <Typography variant="h6" align="center" marginBottom="1rem">
+          {camper.name}
+        </Typography>
       </Box>
-      <Typography variant="h6" align="center">
-        {camper.name}
-      </Typography>
-      <Box>
+
+      <Box flex="1">
         {camper.mainAmenities?.map((amenity) => (
           <Box key={amenity.name} className={styles.iconBox}>
             <Icon>{amenity.icon}</Icon>
@@ -32,14 +35,21 @@ const CamperCard = ({ camper }: Props) => {
           </Box>
         ))}
       </Box>
-      <Typography fontSize={19} marginY="1rem" color="primary">
-        {`od ${camper.price[0].price} zł/doba`}
-      </Typography>
-      <NextLink href={'kampery/' + makeURLfromName(camper.name)} passHref>
-        <Button variant="contained" color="success" size="large">
-          Opis szczegółowy
-        </Button>
-      </NextLink>
+      <Box className={styles.bottomBox}>
+        <Typography
+          fontSize={19}
+          marginY="1rem"
+          color="primary"
+          fontWeight={500}
+        >
+          {`od ${camper.price[0].price} zł/doba`}
+        </Typography>
+        <NextLink href={'kampery/' + makeURLfromName(camper.name)} passHref>
+          <Button variant="contained" color="success" size="large">
+            Opis szczegółowy
+          </Button>
+        </NextLink>
+      </Box>
     </Paper>
   );
 };
