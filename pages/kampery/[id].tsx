@@ -6,7 +6,7 @@ import db, { fetchCampers, fetchPageData } from '../../utils/db/firebase';
 import { formatPathtoGCS, makeURLfromName } from '../../utils/helpers';
 import type { NextPage } from 'next';
 import { setEnt } from '../../store/pageDataSlice';
-import { Box, Container, Typography, Divider } from '@mui/material';
+import { Box, Container, Typography, Divider, Paper } from '@mui/material';
 import Image from 'next/image';
 import Carousel from '../../components/ui/Carousel/Carousel';
 import styles from '../../styles/KamperDetails.module.css';
@@ -50,7 +50,7 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
             <Carousel items={carouselImages(appProp.images)} />
           </Box>
           <Box className={styles.camperDetailsWraper}>
-            <Box className={styles.camperDetailsBox}>
+            <Paper className={styles.camperDetailsBox} elevation={3}>
               <Typography>{appProp.name}</Typography>
               <Typography>{appProp.location}</Typography>
               <Divider light />
@@ -61,7 +61,7 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
                 <PriceCard key={price.sesons + price} price={price} />
               ))}
               <Typography>{appProp.additionalPriceInfo}</Typography>
-            </Box>
+            </Paper>
           </Box>
         </Box>
         <Box component="section" className={styles.contentSection}>
