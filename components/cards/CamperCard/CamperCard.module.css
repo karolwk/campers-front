@@ -1,13 +1,12 @@
 .camperBox {
-  max-width: 300px;
   padding: 2rem;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-
   justify-content: space-evenly;
-
-  flex: 1;
+  flex: 3;
 }
 
 .camperBox h2 {
@@ -19,4 +18,26 @@
   align-items: center;
   gap: 5px;
   margin: 0.5rem 0;
+}
+.topBox {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageWrapper {
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  width: 250px;
+  height: 166px;
+  overflow: hidden;
+}
+
+.bottomBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 130px;
 }
