@@ -8,24 +8,44 @@ import {
 } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import styles from './FaqAccordion.module.css';
 import { FaqMainPage } from '../../../shared/types';
 type Props = {
   faq: FaqMainPage[];
 };
 
 const FaqAccordion = ({ faq }: Props) => {
+  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+
   return (
     <Box>
       {faq.map((faq, index) => (
-        <Accordion key={faq.question}>
+        <Accordion
+          key={faq.question}
+          disableGutters
+          className={styles.accordion}
+          expanded={expanded === `panel${index}`}
+          onChange={handleChange(`panel${index}`)}
+        >
           <AccordionSummary
             aria-controls={`faq-${index + 1}-pytanie`}
-            expandIcon={<ExpandMoreIcon />}
+            className={styles.accordionSummary}
+            expandIcon={
+              <ExpandMoreIcon
+                fontSize="large"
+                color="primary"
+                className={styles.icon}
+              />
+            }
           >
-            <Typography>{faq.question}</Typography>
+            <Typography variant="h6">{faq.question}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className={styles.accordionDetails}>
             <Typography>{faq.answer}</Typography>
           </AccordionDetails>
         </Accordion>
