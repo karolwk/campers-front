@@ -1,0 +1,13 @@
+.accordion {
+  border: 1px solid var(--primary);
+}
+.accordion:not(:last-child) {
+  border-bottom: 0;
+}
+.accordion:before {
+  display: none;
+}
+
+.accordionDetails {
+  background-color: var(--bg-light);
+}
