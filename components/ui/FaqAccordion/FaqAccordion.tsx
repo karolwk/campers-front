@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Typography,
@@ -15,12 +15,18 @@ type Props = {
 };
 
 const FaqAccordion = ({ faq }: Props) => {
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-
+  const [expanded, setExpanded] = useState<string | false>(false);
+  const ref = useRef<HTMLDivElement>(null);
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
+  useEffect(() => {
+    if (expanded && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [expanded]);
 
   return (
     <Box>
@@ -33,7 +39,8 @@ const FaqAccordion = ({ faq }: Props) => {
           onChange={handleChange(`panel${index}`)}
         >
           <AccordionSummary
-            aria-controls={`faq-${index + 1}-pytanie`}
+            aria-controls={`faq-${index + 1}-content`}
+            id={`faq-${index + 1}-header`}
             className={styles.accordionSummary}
             expandIcon={
               <ExpandMoreIcon
@@ -46,7 +53,7 @@ const FaqAccordion = ({ faq }: Props) => {
             <Typography variant="h6">{faq.question}</Typography>
           </AccordionSummary>
           <AccordionDetails className={styles.accordionDetails}>
-            <Typography>{faq.answer}</Typography>
+            <Typography ref={ref}> {faq.answer}</Typography>
           </AccordionDetails>
         </Accordion>
       ))}
