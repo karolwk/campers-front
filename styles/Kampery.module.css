@@ -3,11 +3,5 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-.camperboxMain {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  margin-top: 3rem;
 }

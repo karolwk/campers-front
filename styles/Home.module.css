@@ -44,6 +44,7 @@
 .aboutSection {
   padding: 3rem;
   background-color: var(--quaternary);
+  scroll-margin-block-start: 90px;
 }
 
 .circleBox {
@@ -72,11 +73,14 @@
 /* Faq Section */
 
 .faqSection {
-  z-index: 10;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  /* transition: transform 0.1s ease-out; */
 }
 
 @keyframes moveInFromRight {
