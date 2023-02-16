@@ -10,6 +10,7 @@ import NextLink from 'next/link';
 import { navLinks } from '../../../shared/links';
 import { Link as MuiLink } from '@mui/material';
 import { Facebook } from '@mui/icons-material';
+import LogoImage from '../../../assets/LogoImage/LogoImage';
 
 type Props = {};
 
@@ -20,7 +21,7 @@ const Footer = (props: Props) => {
     <footer className={styles.footer}>
       <Container className={styles.container}>
         <FooterCard title="Kontakt">
-          <Image src="/images/logo.png" alt="Logo" width={172} height={92} />
+          <LogoImage href="/" width={172} />
           <Box>
             <Typography fontWeight="bold">{pageData.companyName}</Typography>
             <Typography>{pageData.companyaddress}</Typography>
