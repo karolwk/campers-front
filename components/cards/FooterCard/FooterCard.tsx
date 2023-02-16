@@ -1,13 +1,13 @@
-import { Box, Typography, Container, Button } from '@mui/material';
+import { Box, Typography, BoxProps } from '@mui/material';
 import styles from './FooterCard.module.css';
-type Props = {
+interface Props extends BoxProps {
   children: React.ReactNode;
   title: string;
-};
+}
 
 const FooterCard = ({ children, title, ...rest }: Props) => {
   return (
-    <Box className={styles.card}>
+    <Box className={styles.card} {...rest}>
       <Typography fontSize={'20px'} fontWeight="bold">
         {title}
       </Typography>
