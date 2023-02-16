@@ -17,7 +17,7 @@ const initialState: PageDataState = {
   pinterest: null,
   twitter: null,
 };
-
+//@ts-ignore
 export const pageDataSlice = createSlice({
   name: 'pageData',
   initialState,
@@ -28,7 +28,6 @@ export const pageDataSlice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.log('HYDRATE', action.payload);
       return {
         ...state,
         ...action.payload.pageData,
