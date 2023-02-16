@@ -20,6 +20,7 @@ import FaqAccordion from '../components/ui/FaqAccordion/FaqAccordion';
 import Link from 'next/link';
 import { Animate } from '../components/animations/Animate/Animate';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import BoxWithBackground from '../components/layouts/BoxWithBackground/BoxWithBackground';
 type HomeProps = {
   mainPage: MainPageData;
   campers: Camper[];
@@ -84,7 +85,7 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
         </Box>
       </Container>
 
-      <Box className={styles.aboutSection}>
+      <Box className={styles.aboutSection} id="about">
         <Typography variant="h2" className={styles.sectionTitle}>
           {mainPage.teaserTitle}
         </Typography>
@@ -121,27 +122,28 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
         <Grid2 container spacing={4} marginY={'2rem'}>
           {campers.map((camper) => (
             <Grid2 xs={12} sm={6} md={4} key={camper.name}>
-              <CamperCard camper={camper} />
+              <Animate.FadeUp component={Box} height="100%">
+                <CamperCard camper={camper} />
+              </Animate.FadeUp>
             </Grid2>
           ))}
         </Grid2>
       </Container>
-      <Typography variant="h2" align="center" fontWeight={500} marginY="2rem">
-        Najczęsciej zadawane pytania
-      </Typography>
-      <Box sx={{ position: 'relative' }} height="70vh">
-        <Image
-          src="/images/bg-droga.jpg"
-          alt="dia"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="bottom"
-          priority
-        />
+
+      <BoxWithBackground bgImage="/images/bg-droga.jpg">
         <Container component="section" className={styles.faqSection}>
+          <Typography
+            variant="h2"
+            align="center"
+            fontWeight={500}
+            marginY="2rem"
+            zIndex={2}
+          >
+            Najczęsciej zadawane pytania
+          </Typography>
           <FaqAccordion faq={mainPage.faq} />
         </Container>
-      </Box>
+      </BoxWithBackground>
     </Layout>
   );
 };
