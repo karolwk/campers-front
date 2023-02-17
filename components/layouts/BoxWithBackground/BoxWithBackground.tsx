@@ -21,7 +21,6 @@ const BoxWithBackground: FC<PropsWithChildren<Props>> = ({
         layout="fill"
         objectFit="cover"
         objectPosition="bottom"
-        priority
       />
       {children}
     </Box>
