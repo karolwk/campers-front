@@ -18,12 +18,11 @@ import { useAppSelector } from '../../../hooks/reduxHooks';
 import MenuIcon from '@mui/icons-material/Menu';
 import MobileMenu from '../../menu/MobileMenu/MobileMenu';
 import { Navlinks } from '../../../shared/types';
-import Image from 'next/image';
 import Link from 'next/link';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import MuiLink from '@mui/material/Link';
 import { formatPhone } from '../../../utils/helpers';
+import LogoImage from '../../../assets/LogoImage/LogoImage';
 
 interface Props {
   navLinks: Navlinks;
@@ -62,23 +61,17 @@ export default function NavBar({ navLinks, ...props }: Props) {
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       >
-        <MobileMenu navLinks={navLinks} />
+        <MobileMenu
+          navLinks={navLinks}
+          handleDrawerToggle={handleDrawerToggle}
+        />
       </MobileDrawer>
       <ElevationScroll {...props}>
         <AppBar className={styles.navbar}>
           <Container component="nav">
             <Toolbar className={styles.toolbar}>
               <Box sx={{ flexGrow: 1 }}>
-                <Link href="/" passHref>
-                  <MuiLink>
-                    <Image
-                      src="/images/logo.png"
-                      alt="Logo"
-                      width={150}
-                      height={80}
-                    />
-                  </MuiLink>
-                </Link>
+                <LogoImage href="/" width={150} />
               </Box>
 
               <IconButton
