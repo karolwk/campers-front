@@ -1,35 +1,44 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import {
   ListItem,
   Box,
-  Typography,
   Divider,
   List,
   ListItemButton,
   ListItemText,
 } from '@mui/material';
 import { Navlinks } from '../../../shared/types';
+import LogoImage from '../../../assets/LogoImage/LogoImage';
+import MuiLink from '@mui/material/Link';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type Props = {
   navLinks: Navlinks;
-  handleDrawerToggle?: () => void;
+  handleDrawerToggle: () => void;
 };
 
 const MobileMenu = ({ navLinks, handleDrawerToggle }: Props) => {
   return (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        M. na logo
-      </Typography>
+    <Box sx={{ textAlign: 'center' }}>
+      <LogoImage width={130} href="/" onClick={handleDrawerToggle} />
+
       <Divider />
       <List>
         {navLinks.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item.name} />
-            </ListItemButton>
-          </ListItem>
+          <Link key={item.name} href={item.url} passHref>
+            <MuiLink underline="none">
+              <ListItem disablePadding>
+                <ListItemButton
+                  sx={{ textAlign: 'center' }}
+                  onClick={handleDrawerToggle}
+                >
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              </ListItem>
+            </MuiLink>
+          </Link>
         ))}
       </List>
     </Box>
