@@ -10,8 +10,17 @@ body {
 :root {
   /* Colors */
   --primary: #1c6758;
+  --secondary: #3d8361;
+  --tertiary: #d6cda4;
+  --quaternary: #eef2e6;
+  --bg-light: hsl(80, 32%, 97%);
+
   /* Shadows */
   --shadow: 0 4px 8px 0 rgb(27 64 67 / 10%);
+  /* Breakpoints */
+
+  --bp_sm: max-width(600px);
+  --bp_md: 900px;
 }
 
 .MuiToolbar-root {
