@@ -7,17 +7,19 @@ import Link from 'next/link';
 interface Props extends LinkProps {
   alt?: string;
   width?: number;
+  onClick?: () => void;
 }
 
 const LogoImage = ({
   href = '/',
   alt = 'Logo image',
   width = 150,
+  onClick,
   ...rest
 }: Props) => {
   return (
     <Link href={href} passHref {...rest}>
-      <MuiLink>
+      <MuiLink onClick={onClick}>
         <Image
           src="/images/logo.png"
           alt={alt}
