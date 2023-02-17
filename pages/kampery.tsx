@@ -16,7 +16,6 @@ interface OtherProps {
 }
 
 const Kampery: NextPage<OtherProps> = ({ campers }) => {
-  console.log(campers);
   return (
     <Layout
       title="Kampery na wynajem - oferta"
@@ -27,7 +26,7 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
           <Typography variant="h2" fontWeight={500}>
             Nasze kampery
           </Typography>
-          <Typography variant="subtitle1">
+          <Typography variant="subtitle1" textAlign="center">
             Nasze kampery są w pełni wyposażone, łatwe w obsłudze i idealne na
             kempingowe wyjazdy. Od spokojnego weekendu po eksplorowanie Europy,
             możliwości są nieograniczone!
