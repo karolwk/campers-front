@@ -36,14 +36,14 @@ const carouselImages = (images: string[]) => {
 const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   if (!appProp) {
     return (
-      <Layout title="Camper not found" description="no data">
+      <Layout metaTitle="Camper not found" metaDescription="no data">
         <h3>No data please return to main page</h3>
       </Layout>
     );
   }
 
   return (
-    <Layout title={appProp.name} description={appProp.description}>
+    <Layout metaTitle={appProp.name} metaDescription={appProp.description}>
       <Container>
         <Box component="section" className={styles.camperDetailsSection}>
           <Box className={styles.galleryBox}>

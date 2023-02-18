@@ -29,8 +29,8 @@ type HomeProps = {
 const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
   return (
     <Layout
-      title="Kampery na wynajem"
-      description="Nasza firma oferuje wynajem w pełni wyposażonych i przystosowanych do podróży kamperów. Sami jesteśmy pasjonatami aktywności turystycznych i odwiedzania różnorodnych zakątków świata. Chętnie doradzamy naszym klientom, jak odpowiednio zorganizować podróż kamperem i o czym należy pamiętać."
+      metaTitle="Kampery na wynajem"
+      metaDescription="Nasza firma oferuje wynajem w pełni wyposażonych i przystosowanych do podróży kamperów. Sami jesteśmy pasjonatami aktywności turystycznych i odwiedzania różnorodnych zakątków świata. Chętnie doradzamy naszym klientom, jak odpowiednio zorganizować podróż kamperem i o czym należy pamiętać."
     >
       <Box component="section" className={styles.mainImageSection}>
         <Image

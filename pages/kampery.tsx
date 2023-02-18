@@ -18,8 +18,8 @@ interface OtherProps {
 const Kampery: NextPage<OtherProps> = ({ campers }) => {
   return (
     <Layout
-      title="Kampery na wynajem - oferta"
-      description="Wynajem kamperow Wieliczka/Kraków nasza oferta"
+      metaTitle="Kampery na wynajem - oferta"
+      metaDescription="Wynajem kamperow Wieliczka/Kraków nasza oferta"
     >
       <Container>
         <Box className={styles.camperboxHeader}>
