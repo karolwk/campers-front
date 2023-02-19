@@ -6,6 +6,7 @@ export const formatPhone = (number: string): string => {
   if (newNumber.length !== 9) return number;
 
   newNumber =
+    '+48 ' +
     newNumber.substring(0, 3) +
     ' ' +
     newNumber.substring(3, 6) +
