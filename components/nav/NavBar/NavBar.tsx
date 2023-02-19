@@ -88,7 +88,13 @@ export default function NavBar({ navLinks, ...props }: Props) {
                 sx={{ display: { xs: 'none', md: 'block' } }}
                 className={styles.menu}
               >
-                <Box sx={{ paddingLeft: '10px', display: 'flex', gap: '20px' }}>
+                <Box
+                  sx={{
+                    padding: '10px 0px 0px 8px',
+                    display: 'flex',
+                    gap: '20px',
+                  }}
+                >
                   <Typography className={styles.contactData}>
                     <EmailIcon color="primary" />
                     {navData.email}
@@ -100,7 +106,14 @@ export default function NavBar({ navLinks, ...props }: Props) {
                 </Box>
                 {navLinks.map((item) => (
                   <Link href={item.url} key={item.name} passHref>
-                    <Button sx={{ color: '#000000', marginRight: '20px' }}>
+                    <Button
+                      sx={{
+                        marginRight: '1.4rem',
+                        lineHeight: '2.5rem',
+                        fontSize: 'medium',
+                        textTransform: 'none',
+                      }}
+                    >
                       {item.name}
                     </Button>
                   </Link>
