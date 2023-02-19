@@ -15,7 +15,7 @@ const AnimateIn: FC<PropsWithChildren<AnimateInProps>> = ({
   to,
   component: Component,
   children,
-  transition = '600ms ease-in-out',
+  transition = '650ms ease-in-out',
   ...rest
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
