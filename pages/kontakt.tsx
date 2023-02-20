@@ -50,7 +50,7 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
             </Box>
             <Paper elevation={2} sx={{ border: 'none' }}>
               <Map
-                api=""
+                api="s"
                 center={{ lat: 49.982276, lng: 20.076053 }}
                 infoWindowContent={<InfoWindowText />}
               />
