@@ -23,7 +23,7 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
           {appProp.companyName}
         </Typography>
 
-        <Button href="https://goo.gl/maps/kmDoZT4ziohQ6hdY6" variant="outlined">
+        <Button href="" variant="outlined">
           Ustaw trasę dojazdu
         </Button>
       </>
