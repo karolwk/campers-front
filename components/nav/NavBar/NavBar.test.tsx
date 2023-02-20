@@ -1,8 +1,9 @@
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import NavBar from './NavBar';
 import '@testing-library/jest-dom';
+
 const mockStore = configureStore([]);
 
 describe('NavBar component', () => {
