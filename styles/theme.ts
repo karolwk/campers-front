@@ -13,7 +13,7 @@ const colors = {
 let theme = createTheme({
   typography: {
     h1: {
-      fontSize: '3.5rem',
+      fontSize: '3rem',
       fontWeight: 400,
     },
     h2: {

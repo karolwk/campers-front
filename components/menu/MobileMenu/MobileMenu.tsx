@@ -12,7 +12,6 @@ import { Navlinks } from '../../../shared/types';
 import LogoImage from '../../../assets/LogoImage/LogoImage';
 import MuiLink from '@mui/material/Link';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 type Props = {
   navLinks: Navlinks;
