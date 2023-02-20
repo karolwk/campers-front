@@ -24,6 +24,7 @@ const MobileDrawer = ({
       <Drawer
         anchor={anchor}
         variant="temporary"
+        role="dialog"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         disableScrollLock={true}

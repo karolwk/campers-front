@@ -31,7 +31,7 @@ const Footer = (props: Props) => {
           </Box>
 
           <Typography>{pageData.email}</Typography>
-          <Typography>tel. +48 {formatPhone(pageData.phone)}</Typography>
+          <Typography>tel. {formatPhone(pageData.phone)}</Typography>
         </FooterCard>
         <FooterCard title="Strony">
           {navLinks.map((link) => (

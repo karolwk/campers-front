@@ -5,7 +5,7 @@ export const navLinks = [
   },
   {
     name: 'O nas',
-    url: '#',
+    url: '/#about',
   },
   {
     name: 'Kampery',

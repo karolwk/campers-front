@@ -77,6 +77,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
+                role="button"
                 edge="end"
                 onClick={handleDrawerToggle}
                 sx={{ pr: 2, display: { md: 'none' } }}
