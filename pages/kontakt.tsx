@@ -23,7 +23,7 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
           {appProp.companyName}
         </Typography>
 
-        <Button href="" variant="outlined">
+        <Button href="https://goo.gl/maps/kmDoZT4ziohQ6hdY6" variant="outlined">
           Ustaw trasę dojazdu
         </Button>
       </>
@@ -50,7 +50,7 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
             </Box>
             <Paper elevation={2} sx={{ border: 'none' }}>
               <Map
-                api="AIzaSyC0sfDBAdm6BZMKDuXu67APX6o18N_jGjg"
+                api=""
                 center={{ lat: 49.982276, lng: 20.076053 }}
                 infoWindowContent={<InfoWindowText />}
               />
