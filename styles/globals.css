@@ -231,3 +231,9 @@ body {
   vertical-align: middle;
   line-height: 0;
 }
+
+@media (prefes-reduced-motion) {
+  .NoAnimationClass {
+    transition: none;
+  }
+}
