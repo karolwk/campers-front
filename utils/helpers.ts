@@ -15,6 +15,13 @@ export const formatPhone = (number: string): string => {
   return newNumber;
 };
 
+// normalizer to enter only numbers in form
+export const normalizeToInt = (value: string) => {
+  if (!value) return value;
+  const onlyNums = value.replace(/[^\d]/g, '');
+  return Number.parseInt(onlyNums);
+};
+
 // helper function to convert image src path to Google Cloud Storage address
 export const formatPathtoGCS = (path: string): string => {
   const bucket =
