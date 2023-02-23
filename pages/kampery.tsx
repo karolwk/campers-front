@@ -10,7 +10,7 @@ import { Box, Container, Typography } from '@mui/material';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
 import styles from '../styles/Kampery.module.css';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
-
+import { Animate } from '../components/animations/Animate/Animate';
 interface OtherProps {
   campers: Camper[];
 }
@@ -33,9 +33,18 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
           </Typography>
         </Box>
         <Grid2 container spacing={5} marginY="2rem">
-          {campers.map((camper) => (
+          {campers.map((camper, index) => (
             <Grid2 key={camper.name} xs={12} sm={6} md={4}>
-              <CamperCard camper={camper} />
+              <Animate.SlideFromRihght
+                component={Box}
+                transition="all 1s "
+                transitionDelay={
+                  index < 9 ? `${index * 100 + 100}ms` : '1000ms'
+                }
+                height="100%"
+              >
+                <CamperCard camper={camper} />
+              </Animate.SlideFromRihght>
             </Grid2>
           ))}
         </Grid2>
