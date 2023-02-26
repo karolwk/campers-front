@@ -34,12 +34,10 @@ const Map: FC<PropsWithChildren<MapProps>> = ({
   });
 
   const [marker, setMarker] = React.useState<google.maps.Marker | null>(null);
-  console.log('Map rendered');
 
   const onMarkerLoad = React.useCallback(function callback(
     marker: google.maps.Marker
   ) {
-    console.log('Marker func exec');
     // Setting marker Instance
     setMarker(marker);
   },
