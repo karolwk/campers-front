@@ -232,6 +232,11 @@ body {
   line-height: 0;
 }
 
+.grecaptcha-badge {
+  visibility: hidden !important;
+  z-index: -100;
+}
+
 @media (prefes-reduced-motion) {
   .NoAnimationClass {
     transition: none;
