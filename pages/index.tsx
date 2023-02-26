@@ -20,7 +20,7 @@ import FaqAccordion from '../components/ui/FaqAccordion/FaqAccordion';
 import Link from 'next/link';
 import { Animate } from '../components/animations/Animate/Animate';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
-import BoxWithBackground from '../components/layouts/BoxWithBackground/BoxWithBackground';
+import BoxWithBackground from '../components/ui/BoxWithBackground/BoxWithBackground';
 type HomeProps = {
   mainPage: MainPageData;
   campers: Camper[];
@@ -67,19 +67,21 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
           Dlaczego my
         </Typography>
         <Box className={styles.icons}>
-          {mainPage.icons.map((icon) => {
+          {mainPage.icons.map((icon, index) => {
             return (
-              <Animate.ScaleIn
+              <Animate.SlideFromRihght
                 key={icon.title}
                 component={Box}
                 sx={{ flex: 1 }}
+                transition="1s all"
+                transitionDelay={`${index * 100 + 200}ms`}
               >
                 <IconCard
                   iconURL={icon.iconURL}
                   iconTitle={icon.title}
                   iconDescription={icon.description}
                 />
-              </Animate.ScaleIn>
+              </Animate.SlideFromRihght>
             );
           })}
         </Box>
