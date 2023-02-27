@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
@@ -13,26 +13,13 @@ import MuiLink from '@mui/material/Link';
 import ContactForm from '../components/forms/ContactForm/ContactForm';
 
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import MapInfoWindow from '../components/ui/MapInfoWindow/MapInfoWindow';
 
 interface OtherProps {
   appProp: PageDataState;
 }
 
 const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
-  const InfoWindowText = () => {
-    return (
-      <>
-        <Typography fontWeight={500} marginBottom="1rem" align="center">
-          {appProp.companyName}
-        </Typography>
-
-        <Button href="https://goo.gl/maps/kmDoZT4ziohQ6hdY6" variant="outlined">
-          Ustaw trasę dojazdu
-        </Button>
-      </>
-    );
-  };
-
   return (
     <Layout
       metaTitle="Kampery na wynajem - kontakt"
@@ -56,7 +43,9 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
               <Map
                 api={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string}
                 center={{ lat: 49.982276, lng: 20.076053 }}
-                infoWindowContent={<InfoWindowText />}
+                infoWindowContent={
+                  <MapInfoWindow companyName={appProp.companyName} />
+                }
               />
             </Paper>
           </Grid2>
