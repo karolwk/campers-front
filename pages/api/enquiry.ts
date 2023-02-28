@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import { sendEmail } from '../../utils/sendEmail';
 
 type Response = {
   status: 'success' | 'failure';
@@ -17,13 +18,28 @@ export default async function handler(
         'https://www.google.com/recaptcha/api/siteverify',
         `secret=${secretToken}&response=${req.body.captchaToken}`
       );
-      console.log(JSON.stringify(data));
       if (data.success) {
         if (data.score > 0.5) {
-          res.status(200).json({
-            status: 'success',
-            message: 'CAPTCHA OK',
-          });
+          try {
+            await sendEmail({
+              replyTo: req.body.email as string,
+              to: process.env.EMAIL_TO as string,
+              subject: 'Zapytanie ze stony',
+              text: req.body.message as string,
+              html: `<p><strong>Nadawca:</strong></p>${req.body.firstName}<p><strong>email i telefon:</strong>
+              </p> ${req.body.email} ${req.body.phone}<p><strong>Treść:</strong></p><p>${req.body.message}</p> `,
+            });
+            res.status(200).json({
+              status: 'success',
+              message: 'CAPTCHA OK',
+            });
+          } catch (error) {
+            res.status(550).json({
+              status: 'failure',
+              message:
+                'Problem z wysyłką wiadomości - serwer pocztowy nie odpowiada',
+            });
+          }
         } else {
           res.status(200).json({
             status: 'failure',
