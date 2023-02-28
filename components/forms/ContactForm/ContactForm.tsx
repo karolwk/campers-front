@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { literal, object, string, TypeOf, number } from 'zod';
+import { literal, object, string, TypeOf, number, boolean, coerce } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormTextInput from '../FormTextInput/FormTextInput';
-import { Box, Button, Slide, Typography } from '@mui/material';
+import { Box, Button, Link as MuiLink, Slide, Typography } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import styles from './ContactForm.module.css';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import AlertSnackBar from '../../ui/AlertSnackBar/AlertSnackBar';
+import FormCheckBox from '../FormCheckbox/FormCheckbox';
 
 type Props = {};
 
@@ -20,6 +21,7 @@ const defaultValues = {
   phone: '',
   message: '',
   captchaToken: '',
+  rodoAcceptance: false,
 };
 
 // Form schema rules object using zod
@@ -32,12 +34,14 @@ const formSchema = object({
       /^(|(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w))$/,
       'Nieprawidłowy numer telefonu'
     )
-
     .optional(),
   message: string()
     .max(800, 'Treść wiadomosci jest za dluga! Maksimum znaków to 800')
     .min(1, 'Treść jest wymagana'),
   captchaToken: string().optional(),
+  rodoAcceptance: boolean().refine((value) => value === true, {
+    message: 'Pole wymagane',
+  }),
 });
 
 // Infer the Schema to get the TS Type
@@ -61,7 +65,6 @@ const ContactForm = (props: Props) => {
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
-    console.log(data);
     if (!executeRecaptcha) {
       console.log('Exectute recaptcha not yet available');
       return;
@@ -69,6 +72,7 @@ const ContactForm = (props: Props) => {
     try {
       const token = await executeRecaptcha('formSubmit');
       const dataToSend = { ...data, captchaToken: token };
+
       const res = await axios.post('/api/enquiry', dataToSend);
       const status = res.data.status;
       if (status === 'success') {
@@ -80,13 +84,16 @@ const ContactForm = (props: Props) => {
       }
 
       // console.log(res.data.message + status + ' response from api');
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      setErrorMessage(JSON.stringify(error));
+
+      error.message
+        ? setErrorMessage(error.message)
+        : setErrorMessage(JSON.stringify(error));
+
       setAlertBox(true);
     }
   };
-  console.log('form rendered');
 
   return (
     <>
@@ -156,6 +163,17 @@ const ContactForm = (props: Props) => {
               rows={5}
             />
           </Grid2>
+
+          <Grid2 xs={12}>
+            <FormCheckBox
+              control={control}
+              disabled={isSubmitting}
+              errors={errors}
+              required
+              name="rodoAcceptance"
+              label="Zapoznałem się z informacją o administratorze i przetwarzaniu danych*"
+            />
+          </Grid2>
           <Grid2 xs={12} sm={4}>
             <Typography marginBottom="1rem">* - pola wymagane</Typography>
 
@@ -170,6 +188,19 @@ const ContactForm = (props: Props) => {
             >
               Wyślij
             </LoadingButton>
+          </Grid2>
+          <Grid2 xs={12}>
+            <Typography fontSize={9} marginY="-10px">
+              Ta strona jest chroniona przez reCAPTCHA i Google{' '}
+              <MuiLink href="https://policies.google.com/privacy">
+                Polityka prywatności
+              </MuiLink>{' '}
+              i Obowiązują{' '}
+              <MuiLink href="https://policies.google.com/terms">
+                Warunki korzystania z usługi
+              </MuiLink>
+              .
+            </Typography>
           </Grid2>
         </Grid2>
       </Box>
