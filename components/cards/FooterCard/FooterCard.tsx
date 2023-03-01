@@ -8,7 +8,7 @@ interface Props extends BoxProps {
 const FooterCard = ({ children, title, ...rest }: Props) => {
   return (
     <Box className={styles.card} {...rest}>
-      <Typography fontSize={'20px'} fontWeight="bold">
+      <Typography fontSize={'20px'} fontWeight="bold" marginBottom="0.5rem">
         {title}
       </Typography>
       {children}
