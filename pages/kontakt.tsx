@@ -14,6 +14,7 @@ import ContactForm from '../components/forms/ContactForm/ContactForm';
 
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import MapInfoWindow from '../components/ui/MapInfoWindow/MapInfoWindow';
+import ContactInfo from '../components/ui/ContactInfo/ContactInfo';
 
 interface OtherProps {
   appProp: PageDataState;
@@ -30,15 +31,15 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
       <Container component="section" sx={{ marginY: '2rem' }}>
         <Grid2 container spacing={2}>
           <Grid2 xs={12} md={6}>
-            <Box>
-              <Typography fontSize="1.2rem" fontWeight={500}>
-                {appProp.companyName}
-              </Typography>
-              <Typography>{appProp.companyaddress}</Typography>
-              <Typography>
-                {appProp.companyZipCode + ' ' + appProp.companyCity}
-              </Typography>
-            </Box>
+            <ContactInfo
+              companyName={appProp.companyName}
+              companyAddress={appProp.companyaddress}
+              zipCode={appProp.companyZipCode}
+              city={appProp.companyCity}
+              email={appProp.email}
+              phone={appProp.phone}
+            />
+
             <Paper elevation={2} sx={{ border: 'none' }}>
               <Map
                 api={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string}
