@@ -21,3 +21,9 @@ export const navLinks = [
     url: '/kontakt',
   },
 ];
+
+export const footerLinks = [
+  ...navLinks.slice(0, -1),
+  { name: 'Polityka Prywatności', url: '/polityka-prywatności' },
+  ...navLinks.slice(navLinks.length - 1),
+];
