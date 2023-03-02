@@ -1,6 +1,6 @@
 .footer {
   background-color: #eef2e6;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 2rem;
 }
 
@@ -18,4 +18,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.footerLink {
+  line-height: 2.5rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footerLink:hover {
+  color: var(--tertiary);
 }
