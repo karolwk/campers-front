@@ -19,6 +19,7 @@ let theme = createTheme({
     h2: {
       fontSize: '2rem',
     },
+
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -32,7 +33,9 @@ let theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
+
   palette: {
+    contrastThreshold: 4.5,
     primary: {
       main: colors.primary,
     },
