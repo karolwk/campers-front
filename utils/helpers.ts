@@ -1,6 +1,6 @@
 import uniq from 'lodash/uniq';
 
-export const formatPhone = (number: string): string => {
+export const formatPhone = (number: string, nospace = false): string => {
   // leaves only numbers
   let newNumber = number.replace(/\D+/g, '');
   if (newNumber.length !== 9) return number;
@@ -12,6 +12,9 @@ export const formatPhone = (number: string): string => {
     newNumber.substring(3, 6) +
     ' ' +
     newNumber.substring(6, 9);
+  if (nospace) {
+    return newNumber.replaceAll(' ', '');
+  }
   return newNumber;
 };
 
