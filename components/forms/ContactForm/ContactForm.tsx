@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { literal, object, string, TypeOf, number, boolean, coerce } from 'zod';
+import { object, string, TypeOf, boolean } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormTextInput from '../FormTextInput/FormTextInput';
-import { Box, Button, Link as MuiLink, Slide, Typography } from '@mui/material';
+import { Box, Link as MuiLink, Slide, Typography } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import styles from './ContactForm.module.css';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import AlertSnackBar from '../../ui/AlertSnackBar/AlertSnackBar';
 import FormCheckBox from '../FormCheckbox/FormCheckbox';
-
-type Props = {};
 
 const defaultValues = {
   firstName: '',
@@ -47,14 +45,14 @@ const formSchema = object({
 // Infer the Schema to get the TS Type
 export type FormSchema = TypeOf<typeof formSchema>;
 
+type Props = {};
+
 const ContactForm = (props: Props) => {
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-
     control,
-    register,
   } = useForm<FormSchema>({
     defaultValues,
     resolver: zodResolver(formSchema),
