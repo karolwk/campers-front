@@ -45,7 +45,7 @@ const CamperCard = ({ camper }: Props) => {
           {`od ${camper.price[0].price} zł/doba`}
         </Typography>
         <NextLink href={'kampery/' + makeURLfromName(camper.name)} passHref>
-          <Button variant="contained" color="success" size="large">
+          <Button variant="contained" color="primary" size="large">
             Opis szczegółowy
           </Button>
         </NextLink>
