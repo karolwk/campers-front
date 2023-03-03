@@ -1,10 +1,8 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-
 import styles from '../../../styles/Home.module.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography } from '@mui/material';
+import CookieConsentAlert from '../../ui/CookieConsentAlert/CookieConsentAlert';
 
 type Props = {
   children: React.ReactNode;
@@ -28,6 +26,7 @@ const Layout = ({
         <meta name="description" content={metaDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <CookieConsentAlert />
 
       <main className={styles.main}>
         {pageTitle && (
