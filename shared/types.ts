@@ -78,7 +78,22 @@ export type MainAmenities = {
   icon: string;
 };
 
-type Icons = {
-  name: string;
-  iconPath: string;
+export type StatutPage = {
+  metaTitle: string;
+  metaDescription: string;
+  pagetitle: string;
+  pageSubtitle: string;
+  mainContent: string;
+  faq: {
+    answer: string;
+    question: string;
+  }[];
+};
+
+export type StatutPageCollection = {
+  metaTitle: string;
+  metaDescription: string;
+  pagetitle: string;
+  pageSubtitle: string;
+  mainContent: string;
 };
