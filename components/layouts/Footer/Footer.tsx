@@ -25,7 +25,7 @@ const Footer = (props: Props) => {
   return (
     <footer className={styles.footer}>
       <Container>
-        <Grid2 container spacing={2}>
+        <Grid2 container spacing={5}>
           <Grid2 xs={12} sm={6} md={3}>
             <FooterCard title="Kontakt">
               <LogoImage href="/" width={172} />
