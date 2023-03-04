@@ -13,7 +13,7 @@ export const navLinks = [
   },
   {
     name: 'Warunki wynajmu',
-    url: '#',
+    url: '/warunki-wynajmu',
   },
 
   {
@@ -24,6 +24,6 @@ export const navLinks = [
 
 export const footerLinks = [
   ...navLinks.slice(0, -1),
-  { name: 'Polityka Prywatności', url: '/polityka-prywatności' },
+  { name: 'Polityka Prywatności', url: '/polityka-prywatnosci' },
   ...navLinks.slice(navLinks.length - 1),
 ];
