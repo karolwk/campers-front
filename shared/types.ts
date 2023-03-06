@@ -90,7 +90,7 @@ export type StatutPage = {
   }[];
 };
 
-export type StatutPageCollection = {
+export type PrivacyPage = {
   metaTitle: string;
   metaDescription: string;
   pagetitle: string;
