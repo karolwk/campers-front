@@ -34,13 +34,13 @@ const CookieConsentAlert = (props: Props) => {
         sx={{ backgroundColor: 'var(--secondary)', maxWidth: '600px' }}
         action={
           <Box sx={{ display: 'flex', gap: '1rem' }}>
-            <Link href="/polityka-prywatności" passHref>
+            <Link href="/polityka-prywatnosci" passHref>
               <Button variant="outlined" color="inherit">
                 Polityka Prywatności
               </Button>
             </Link>
             <Button variant="contained" color="primary" onClick={handleClose}>
-              AKCEPTUJĘ
+              ZAMKNIJ
             </Button>
           </Box>
         }
