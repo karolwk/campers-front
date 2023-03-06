@@ -1,0 +1,15 @@
+.container {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw + 1.75rem, 8rem);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 0.6vw + 1rem, 1.5rem);
+}
