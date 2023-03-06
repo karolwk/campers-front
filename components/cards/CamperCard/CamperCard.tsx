@@ -5,6 +5,7 @@ import { Camper } from '../../../shared/types';
 import NextImage from 'next/image';
 import { formatPathtoGCS, makeURLfromName } from '../../../utils/helpers';
 import NextLink from 'next/link';
+import minBy from 'lodash/minBy';
 
 type Props = {
   camper: Camper;
@@ -42,7 +43,7 @@ const CamperCard = ({ camper }: Props) => {
           color="primary"
           fontWeight={500}
         >
-          {`od ${camper.price[0].price} zł/doba`}
+          {`od ${minBy(camper.price, (o) => o.price)?.price} zł/doba`}
         </Typography>
         <NextLink href={'kampery/' + makeURLfromName(camper.name)} passHref>
           <Button variant="contained" color="primary" size="large">
