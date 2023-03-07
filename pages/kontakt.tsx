@@ -2,25 +2,25 @@ import React, { useMemo } from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import { fetchPageData } from '../utils/db/firebase';
+import db, { fetchPageData } from '../utils/db/firebase';
 import { setEnt } from '../store/pageDataSlice';
-import { PageDataState } from '../shared/types';
+import { PageDataState, StatutPage } from '../shared/types';
 import { Container, Typography, Paper, Box, Button } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import styles from '../styles/Kontakt.module.css';
 import Map from '../components/ui/Map/Map';
-import MuiLink from '@mui/material/Link';
 import ContactForm from '../components/forms/ContactForm/ContactForm';
-
+import { doc, getDoc } from 'firebase/firestore';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import MapInfoWindow from '../components/ui/MapInfoWindow/MapInfoWindow';
 import ContactInfo from '../components/ui/ContactInfo/ContactInfo';
 
 interface OtherProps {
   appProp: PageDataState;
+  privacyData: StatutPage;
 }
 
-const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
+const Kontakt: NextPage<OtherProps> = ({ appProp, privacyData }) => {
   return (
     <Layout
       metaTitle="Kampery na wynajem - kontakt"
@@ -56,7 +56,7 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
                 process.env.NEXT_PUBLIC_CLIENT_RECAPTACHA_API as string
               }
             >
-              <ContactForm />
+              <ContactForm privacyContent={privacyData.mainContent} />
             </GoogleReCaptchaProvider>
           </Grid2>
         </Grid2>
@@ -68,10 +68,17 @@ const Kontakt: NextPage<OtherProps> = ({ appProp }) => {
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const docSnap = await fetchPageData();
   store.dispatch(setEnt(docSnap.data() as PageDataState));
+  const docRef = doc(
+    db,
+    process.env.PRIVACY_DB as string,
+    process.env.PRIVACY_DB_DOC as string
+  );
+  const privacySnapshot = await getDoc(docRef);
 
   return {
     props: {
       appProp: docSnap.data(),
+      privacyData: privacySnapshot.data(),
     },
   };
 });
