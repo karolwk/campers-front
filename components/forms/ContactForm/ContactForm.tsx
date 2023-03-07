@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { object, string, TypeOf, boolean } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,6 +12,8 @@ import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
 import AlertSnackBar from '../../ui/AlertSnackBar/AlertSnackBar';
 import FormCheckBox from '../FormCheckbox/FormCheckbox';
+import Dialog, { DialogProps } from '@mui/material/Dialog';
+import PrivacyDialog from '../../dialogs/PrivacyDialog/PrivacyDialog';
 
 const defaultValues = {
   firstName: '',
@@ -45,9 +47,11 @@ const formSchema = object({
 // Infer the Schema to get the TS Type
 export type FormSchema = TypeOf<typeof formSchema>;
 
-type Props = {};
+type Props = {
+  privacyContent: string;
+};
 
-const ContactForm = (props: Props) => {
+const ContactForm = ({ privacyContent }: Props) => {
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -61,6 +65,21 @@ const ContactForm = (props: Props) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [alertBox, setAlertBox] = useState(false);
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
+  const [openPrivacyDialog, setOpenPrivacyDialog] = useState(false);
+  const handleClosePrivacyDialog = useCallback(() => {
+    setOpenPrivacyDialog(false);
+  }, []);
+  const descriptionElementRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // If open we take focus on div to scroll
+    if (openPrivacyDialog) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [openPrivacyDialog]);
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     if (!executeRecaptcha) {
@@ -95,6 +114,21 @@ const ContactForm = (props: Props) => {
 
   return (
     <>
+      <Dialog
+        open={openPrivacyDialog}
+        onClose={handleClosePrivacyDialog}
+        scroll="paper"
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+      >
+        <PrivacyDialog
+          handleClose={handleClosePrivacyDialog}
+          currentRef={descriptionElementRef}
+          content={privacyContent}
+          ariaDescId="scroll-dialog-title"
+          ariaTitleId="scroll-dialog-description"
+        />
+      </Dialog>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <AlertSnackBar
           open={alertBox}
@@ -169,7 +203,15 @@ const ContactForm = (props: Props) => {
               errors={errors}
               required
               name="rodoAcceptance"
-              label="Zapoznałem się z informacją o administratorze i przetwarzaniu danych*"
+              label={
+                <>
+                  Zapoznałem się z{' '}
+                  <MuiLink onClick={() => setOpenPrivacyDialog(true)}>
+                    informacją o administratorze i przetwarzaniu danych
+                  </MuiLink>
+                  *
+                </>
+              }
             />
           </Grid2>
           <Grid2 xs={12} sm={4}>
