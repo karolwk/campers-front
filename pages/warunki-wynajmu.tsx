@@ -5,7 +5,7 @@ import { wrapper } from '../store/store';
 import { fetchPageData } from '../utils/db/firebase';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState, StatutPage } from '../shared/types';
-import { Container, Box } from '@mui/material';
+import { Container, Box, Typography } from '@mui/material';
 import db from '../utils/db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
@@ -25,7 +25,10 @@ const WarunkiWynajmu: NextPage<Props> = ({ appProp }) => {
     >
       <Container>
         <ReactMarkdown>{appProp.mainContent}</ReactMarkdown>
-        <Box>
+        <Box marginBottom="2rem">
+          <Typography variant="h2" align="center" marginY="2rem">
+            Sprawdź często zadawane pytania
+          </Typography>
           <FaqAccordion faq={appProp.faq} />
         </Box>
       </Container>
