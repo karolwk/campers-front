@@ -24,7 +24,7 @@ const FaqAccordion = ({ faq }: Props) => {
 
   useEffect(() => {
     if (expanded && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, [expanded]);
 
