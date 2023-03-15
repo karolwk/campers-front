@@ -20,7 +20,7 @@ const PolitykaPrywatnosci: NextPage<Props> = ({ appProp }) => {
       pageTitle={appProp.pagetitle}
       pageSubtitle={appProp.pageSubtitle}
     >
-      <Container>
+      <Container sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
         <ReactMarkdown>{appProp.mainContent}</ReactMarkdown>
       </Container>
     </Layout>
