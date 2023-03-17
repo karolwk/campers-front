@@ -10,7 +10,7 @@ import db, {
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState } from '../shared/types';
-import { Box, Button, Container, Typography, Paper } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import styles from '../styles/Home.module.css';
 import { MainPageData, Camper } from '../shared/types';
 import IconCard from '../components/cards/IconCard/IconCard';
