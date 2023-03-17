@@ -71,13 +71,6 @@ export const fetchCampers = async (campersSnapshot: QuerySnapshot) => {
     camperList.map(async (camper: any) => {
       // get data for each amenity
       camper.mainAmenities = await fetchRefs(camper.mainAmenities);
-      // get data for icons
-      // camper.mainAmenities = await Promise.all(
-      //   camper.mainAmenities.map(async (amenitie: any) => {
-      //     amenitie.icon = (await getDoc(amenitie.icon)).data();
-      //     return amenitie;
-      //   })
-      // );
       return camper;
     })
   );
