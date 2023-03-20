@@ -27,7 +27,7 @@ const carouselImages = (images: string[]) => {
       src={formatPathtoGCS(image)}
       alt="Gallery image"
       layout="fill"
-      objectFit="cover"
+      objectFit="contain"
       loading="lazy"
     />
   ));
@@ -51,10 +51,10 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
           </Box>
           <Box className={styles.camperDetailsWraper}>
             <Paper className={styles.camperDetailsBox} elevation={3}>
-              <Typography>{appProp.name}</Typography>
+              <Typography fontWeight={'bold'}>{appProp.name}</Typography>
               <Typography>{appProp.location}</Typography>
               <Divider light />
-              <ListWithIcon items={appProp.mainAmenities} />
+              <ListWithIcon items={appProp.mainAmenities} shorter />
               <Divider light />
               <Typography>Cennik:</Typography>
               {appProp.price.map((price) => (
@@ -105,11 +105,13 @@ export async function getStaticPaths() {
     collection(db, process.env.FIREBASE_DB_CAMPERS as string)
   );
   const paths = [] as any;
-  campersSnapshot.forEach((doc) =>
-    paths.push({
-      params: { id: makeURLfromName(doc.data().name), kamperId: doc.id },
-    })
-  );
+  campersSnapshot.forEach((doc) => {
+    const { name, isPublished } = doc.data();
+    isPublished &&
+      paths.push({
+        params: { id: makeURLfromName(name) },
+      });
+  });
 
   return {
     paths,
