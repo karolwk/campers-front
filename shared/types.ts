@@ -53,6 +53,7 @@ export interface CamperTechnicals {
 }
 
 export interface Camper {
+  isPublished: boolean;
   name: string;
   location: string;
   mainImage: string;
