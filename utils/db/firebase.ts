@@ -64,7 +64,8 @@ export const fetchCampers = async (campersSnapshot: QuerySnapshot) => {
   const camperList = [] as any[];
   // build campers array from camper collection snapshot
   campersSnapshot.forEach((doc) => {
-    camperList.push(doc.data());
+    const data = doc.data();
+    data.isPublished && camperList.push(data);
   });
 
   return Promise.all(
