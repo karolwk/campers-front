@@ -95,6 +95,10 @@
 }
 
 @media (max-width: 1024px) {
+  .aboutSection {
+    padding: 1rem;
+  }
+
   .mainImageSection {
     min-height: 350px;
   }
