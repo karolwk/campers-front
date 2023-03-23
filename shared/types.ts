@@ -54,6 +54,7 @@ export interface CamperTechnicals {
 
 export interface Camper {
   isPublished: boolean;
+  urlSlug: string;
   name: string;
   location: string;
   mainImage: string;
@@ -72,6 +73,8 @@ export interface Camper {
   }[];
   technicals: CamperTechnicals;
   mainAmenities?: MainAmenities[];
+  metaTitle: string;
+  metaDescription: string;
 }
 
 export type MainAmenities = {
