@@ -67,7 +67,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
         />
       </MobileDrawer>
       <ElevationScroll {...props}>
-        <AppBar className={styles.navbar}>
+        <AppBar className={styles.navbar} color="inherit">
           <Container component="nav">
             <Toolbar className={styles.toolbar}>
               <Box sx={{ flexGrow: 1 }}>
@@ -107,14 +107,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
                 </Box>
                 {navLinks.map((item) => (
                   <Link href={item.url} key={item.name} passHref>
-                    <Button
-                      sx={{
-                        marginRight: '1.4rem',
-                        lineHeight: '2.5rem',
-                        fontSize: 'medium',
-                        textTransform: 'none',
-                      }}
-                    >
+                    <Button className={styles.navbarDesktopLink}>
                       {item.name}
                     </Button>
                   </Link>
