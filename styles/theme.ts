@@ -11,15 +11,9 @@ const colors = {
 };
 
 let theme = createTheme({
+  
   typography: {
-    h1: {
-      fontSize: '3rem',
-      fontWeight: 400,
-    },
-    h2: {
-      fontSize: '2rem',
-    },
-
+    
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -32,6 +26,17 @@ let theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
+    button: {
+      fontWeight: 600,
+    },
+    h1: {
+      fontSize: '3rem',
+      fontWeight: 400,
+    },
+    h2: {
+      fontSize: '2rem',
+    },
+    
   },
 
   palette: {
