@@ -5,8 +5,10 @@ import {
   QuerySnapshot,
 } from 'firebase/firestore';
 import { Firestore } from 'firebase/firestore';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+
+import { Camper } from '../../shared/types';
 
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -60,11 +62,14 @@ export const fetchRefs = async (refs: []) =>
   );
 
 // Fetch all campers with their refrences from collection
-export const fetchCampers = async (campersSnapshot: QuerySnapshot) => {
+export const fetchCampersWithRefs = async (
+  campersSnapshot: QuerySnapshot
+): Promise<Camper[]> => {
   const camperList = [] as any[];
   // build campers array from camper collection snapshot
   campersSnapshot.forEach((doc) => {
     const data = doc.data();
+    // Check if campervan has published status then add to list
     data.isPublished && camperList.push(data);
   });
 
@@ -75,6 +80,20 @@ export const fetchCampers = async (campersSnapshot: QuerySnapshot) => {
       return camper;
     })
   );
+};
+
+// Getting shallow version of campers collection
+export const getCamperCollection = async () => {
+  const campersSnapshot = await getDocs(
+    collection(db, process.env.FIREBASE_DB_CAMPERS as string)
+  );
+  const campersList = [] as Camper[];
+  campersSnapshot.forEach((doc) => {
+    const data = doc.data();
+    data.isPublished && campersList.push(data as Camper);
+  });
+
+  return campersList;
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
