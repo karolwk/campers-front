@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
 import db, {
-  fetchCampers,
+  fetchCampersWithRefs,
   fetchPageData,
   fetchRefs,
 } from '../utils/db/firebase';
@@ -29,21 +29,22 @@ type HomeProps = {
 const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
   return (
     <Layout
-      metaTitle="Kampery na wynajem"
+      metaTitle="Kampery na wynajem Kraków - zacznij swoją własną przygodę!"
       metaDescription="Nasza firma oferuje wynajem w pełni wyposażonych i przystosowanych do podróży kamperów. Sami jesteśmy pasjonatami aktywności turystycznych i odwiedzania różnorodnych zakątków świata. Chętnie doradzamy naszym klientom, jak odpowiednio zorganizować podróż kamperem i o czym należy pamiętać."
     >
       <Box component="section" className={styles.mainImageSection}>
         <Image
-          src="/images/background.jpg"
+          src="/images/background8a.jpg"
           alt="dia"
           layout="fill"
+          objectPosition="center"
           objectFit="cover"
           priority
         />
         <Box className={styles.imageSectionBox}>
           <Typography variant="h1">Wakacje bez granic</Typography>
           <Typography variant="subtitle1" fontSize={20}>
-            Luksusowe kampery dla Ciebie
+            Luksusowe kampery w Krakowie i okolicach dla Ciebie
           </Typography>
           <Link href="/kampery" passHref>
             <Button
@@ -172,7 +173,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   );
 
   // fetching campers data
-  const campers = await fetchCampers(campersSnapshot);
+  const campers = await fetchCampersWithRefs(campersSnapshot);
 
   return {
     props: {
