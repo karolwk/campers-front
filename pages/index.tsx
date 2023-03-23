@@ -34,7 +34,7 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
     >
       <Box component="section" className={styles.mainImageSection}>
         <Image
-          src="/images/background8a.jpg"
+          src="/images/background8b.jpg"
           alt="dia"
           layout="fill"
           objectPosition="center"

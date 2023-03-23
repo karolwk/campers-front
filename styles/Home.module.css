@@ -8,7 +8,7 @@
 
 .mainImageSection {
   position: relative;
-  min-height: 85vh;
+  min-height: 41vw;
 }
 .mainImageSection img {
   /* filter: brightness(99%); */
@@ -103,7 +103,7 @@
 @media (min-width: 2300px) {
   .mainImageSection {
     position: relative;
-    min-height: 45vh;
+    min-height: 916px;
   }
 }
 
