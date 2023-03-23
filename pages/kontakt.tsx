@@ -23,8 +23,8 @@ interface OtherProps {
 const Kontakt: NextPage<OtherProps> = ({ appProp, privacyData }) => {
   return (
     <Layout
-      metaTitle="Kampery na wynajem - kontakt"
-      metaDescription="Wynajem kamperow Wieliczka - kontakt"
+      metaTitle="Wynajem kamperów Kraków  - kontakt"
+      metaDescription="Wynajem kamperów w Krakowie - odkryj piękno Polski na własnej drodze! Skontaktuj się z nami, aby wynająć kamper już dziś i zacząć niezapomnianą przygodę."
       pageTitle="Kontakt"
       pageSubtitle="Skontaktuj się z nami - z przyjemnością pomożemy!"
     >

@@ -2,7 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Layout from '../components/layouts/Layout/Layout';
 import { wrapper } from '../store/store';
-import db, { fetchCampers, fetchPageData } from '../utils/db/firebase';
+import db, { fetchCampersWithRefs, fetchPageData } from '../utils/db/firebase';
 import { getDocs, collection } from 'firebase/firestore';
 import { setEnt } from '../store/pageDataSlice';
 import { Camper, PageDataState } from '../shared/types';
@@ -18,8 +18,8 @@ interface OtherProps {
 const Kampery: NextPage<OtherProps> = ({ campers }) => {
   return (
     <Layout
-      metaTitle="Kampery na wynajem - oferta"
-      metaDescription="Wynajem kamperow Wieliczka/Kraków nasza oferta"
+      metaTitle="Wynajem kamperów Kraków - szeroka oferta, atrakcyjne ceny"
+      metaDescription="Wynajem kamperów Wieliczka/Kraków - szeroka oferta, atrakcyjne ceny i profesjonalna obsługa. Odkryj Polskę na własnej drodze! Skontaktuj się z nami i wynajmij kamper już dziś."
     >
       <Container>
         <Box className={styles.camperboxHeader}>
@@ -61,7 +61,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     collection(db, process.env.FIREBASE_DB_CAMPERS as string)
   );
 
-  const campers = await fetchCampers(campersSnapshot);
+  const campers = await fetchCampersWithRefs(campersSnapshot);
 
   return {
     props: {

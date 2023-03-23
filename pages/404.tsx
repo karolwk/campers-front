@@ -17,7 +17,7 @@ type Props = {
 const Page404: NextPage<Props> = ({ appProp }) => {
   return (
     <Layout
-      metaTitle="Kampery na wynajem - 404"
+      metaTitle="Wynajem kamperów Kraków - szeroka oferta, atrakcyjne ceny"
       metaDescription="Nie ma takiej strony."
       pageSubtitle=""
     >
