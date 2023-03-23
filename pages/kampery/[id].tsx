@@ -2,7 +2,10 @@ import Layout from '../../components/layouts/Layout/Layout';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Camper, PageDataState } from '../../shared/types';
 import { wrapper } from '../../store/store';
-import db, { fetchCampers, fetchPageData } from '../../utils/db/firebase';
+import db, {
+  fetchCampersWithRefs,
+  fetchPageData,
+} from '../../utils/db/firebase';
 import { formatPathtoGCS, makeURLfromName } from '../../utils/helpers';
 import type { NextPage } from 'next';
 import { setEnt } from '../../store/pageDataSlice';
@@ -43,7 +46,10 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
   }
 
   return (
-    <Layout metaTitle={appProp.name} metaDescription={appProp.description}>
+    <Layout
+      metaTitle={appProp.metaTitle}
+      metaDescription={appProp.metaDescription}
+    >
       <Container>
         <Box component="section" className={styles.camperDetailsSection}>
           <Box className={styles.galleryBox}>
@@ -91,6 +97,9 @@ const Kamper: NextPage<OtherProps> = ({ appProp }) => {
               amenities={appProp.additionalEquipment}
               className={styles.amenitiesBox}
             />
+            {!!appProp.priceInfo && (
+              <Typography marginY="2rem">{appProp.priceInfo}</Typography>
+            )}
             <TechnicalTable technicals={appProp.technicals} />
           </Box>
         </Box>
@@ -126,15 +135,15 @@ export const getStaticProps = wrapper.getStaticProps(
 
       const docSnap = await fetchPageData();
       store.dispatch(setEnt(docSnap.data() as PageDataState));
-
-      const camperRef = collection(
-        db,
-        process.env.FIREBASE_DB_CAMPERS as string
-      );
       if (params) {
+        const camperRef = collection(
+          db,
+          process.env.FIREBASE_DB_CAMPERS as string
+        );
+        // Query to find specific camper based on params.id
         const q = query(camperRef, where('urlSlug', '==', params.id));
         const querySnapshot = await getDocs(q);
-        appProps = await fetchCampers(querySnapshot);
+        appProps = await fetchCampersWithRefs(querySnapshot);
         appProps = appProps.pop();
       }
 
