@@ -1,6 +1,5 @@
-import { collection, getDocs } from 'firebase/firestore';
 import { Camper } from '../shared/types';
-import db, { getCamperCollection } from '../utils/db/firebase';
+import { getCamperCollection } from '../utils/db/firebase';
 
 const EXTERNAL_DATA_URL = `${process.env.PAGE_URL}/kampery`;
 const PAGE_URL = process.env.PAGE_URL;
@@ -8,7 +7,6 @@ const PAGE_URL = process.env.PAGE_URL;
 function generateSiteMap(campers: Camper[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
      <url>
        <loc>${PAGE_URL}</loc>
      </url>
