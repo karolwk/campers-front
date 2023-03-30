@@ -23,7 +23,12 @@ const CamperCard = ({ camper }: Props) => {
             width={250}
           ></NextImage>
         </Paper>
-        <Typography variant="h6" align="center" marginBottom="1rem">
+        <Typography
+          fontSize="1.4rem"
+          fontWeight={500}
+          align="center"
+          marginBottom="1rem"
+        >
           {camper.name}
         </Typography>
       </Box>

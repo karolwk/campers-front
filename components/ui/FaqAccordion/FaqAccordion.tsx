@@ -50,7 +50,9 @@ const FaqAccordion = ({ faq }: Props) => {
               />
             }
           >
-            <Typography variant="h6">{faq.question}</Typography>
+            <Typography className={styles.faqQuestion}>
+              {faq.question}
+            </Typography>
           </AccordionSummary>
           <AccordionDetails className={styles.accordionDetails}>
             <Typography ref={ref}> {faq.answer}</Typography>

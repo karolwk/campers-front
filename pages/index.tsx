@@ -43,7 +43,7 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
         />
         <Box className={styles.imageSectionBox}>
           <Typography variant="h1">Wakacje bez granic</Typography>
-          <Typography variant="subtitle1" fontSize={20}>
+          <Typography className={styles.mainImageSectionSubtitle}>
             Luksusowe kampery w Krakowie i okolicach dla Ciebie
           </Typography>
           <Link href="/kampery" passHref>
@@ -75,7 +75,7 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
                 component={Box}
                 sx={{ flex: 1 }}
                 transition="1s all"
-                transitionDelay={`${index * 100 + 200}ms`}
+                transitionDelay={`${index * 100 + 100}ms`}
               >
                 <IconCard
                   iconURL={icon.iconURL}
@@ -119,7 +119,7 @@ const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
         <Typography variant="h2" align="center" fontWeight={500}>
           {mainPage.campersTitle}
         </Typography>
-        <Typography variant="subtitle1" align="center">
+        <Typography className={styles.campersSubtilte} align="center">
           {mainPage.campersDescription}
         </Typography>
         <Grid2 container spacing={4} marginY={'2rem'}>

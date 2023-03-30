@@ -11,3 +11,8 @@
 .accordionDetails {
   background-color: var(--bg-light);
 }
+
+.faqQuestion {
+  font-size: clamp(1.125rem, 1vw + 1rem, 1.6rem);
+  font-weight: 400;
+}

@@ -14,6 +14,15 @@
   /* filter: brightness(99%); */
 }
 
+.mainImageSectionSubtitle {
+  color: white;
+  padding-block: 0.5rem;
+  animation-name: moveInFromRight;
+  animation-duration: 2s;
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.375rem);
+  box-shadow: var(--shadow);
+}
+
 .imageSectionBox {
   z-index: 10;
   padding: 2rem;
@@ -74,6 +83,10 @@
 
 .campersSetion {
   margin-top: 2rem;
+}
+
+.campersSubtilte {
+  padding-top: 0.5rem;
 }
 
 /* Faq Section */

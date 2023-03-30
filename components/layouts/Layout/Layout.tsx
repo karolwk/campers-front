@@ -37,6 +37,8 @@ const Layout = ({
             {pageSubtitle && (
               <Typography
                 variant="subtitle1"
+                margin="auto"
+                maxWidth="1000px"
                 textAlign="center"
                 marginBottom="2rem"
               >
