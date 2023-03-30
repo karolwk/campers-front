@@ -20,9 +20,7 @@ const IconCard = ({ iconURL, iconTitle, iconDescription }: Props) => {
         alt={iconTitle + ' icon'}
       ></Image>
 
-      <Typography variant="h5" className={styles.title}>
-        {iconTitle}
-      </Typography>
+      <Typography className={styles.title}>{iconTitle}</Typography>
       <Divider className={styles.divider} />
       <Typography>{iconDescription}</Typography>
     </Paper>
