@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="pl">
       <Head>
         <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
           rel="stylesheet"
         ></link>
       </Head>
