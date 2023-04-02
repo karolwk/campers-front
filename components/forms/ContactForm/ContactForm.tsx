@@ -12,7 +12,7 @@ import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
 import AlertSnackBar from '../../ui/AlertSnackBar/AlertSnackBar';
 import FormCheckBox from '../FormCheckbox/FormCheckbox';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 import PrivacyDialog from '../../dialogs/PrivacyDialog/PrivacyDialog';
 
 const defaultValues = {
