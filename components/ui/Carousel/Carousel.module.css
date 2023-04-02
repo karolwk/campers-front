@@ -19,8 +19,8 @@
 
 .mainGalleryBox {
   position: relative;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 466px;
 }
 
 .btnPrev {
@@ -44,5 +44,11 @@
   }
   .thumbs {
     padding: 0 50px;
+  }
+}
+@media (max-width: 400px) {
+  .mainGalleryBox {
+    width: 320px;
+    height: 213px;
   }
 }
