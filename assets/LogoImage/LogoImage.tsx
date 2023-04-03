@@ -26,7 +26,7 @@ const LogoImage = ({
           src="/images/logo.png"
           alt={alt}
           width={width}
-          height={!height ? width / 1.875 : height}
+          height={width / 1.875}
         />
       </MuiLink>
     </Link>
