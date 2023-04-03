@@ -71,7 +71,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
           <Container component="nav">
             <Toolbar className={styles.toolbar}>
               <Box sx={{ flexGrow: 1 }}>
-                <LogoImage href="/" width={150} />
+                <LogoImage href="/" width={150} height={80} />
               </Box>
 
               <IconButton
@@ -80,7 +80,7 @@ export default function NavBar({ navLinks, ...props }: Props) {
                 role="button"
                 edge="end"
                 onClick={handleDrawerToggle}
-                sx={{ pr: 2, display: { md: 'none' } }}
+                sx={{ display: { md: 'none' }, pr: 2 }}
               >
                 <MenuIcon />
               </IconButton>

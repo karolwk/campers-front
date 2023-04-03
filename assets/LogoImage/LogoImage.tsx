@@ -7,12 +7,14 @@ import Link from 'next/link';
 interface Props extends LinkProps {
   alt?: string;
   width?: number;
+  height?: number;
   onClick?: () => void;
 }
 
 const LogoImage = ({
   href = '/',
   alt = 'Logo image',
+  height = 80,
   width = 150,
   onClick,
   ...rest
@@ -24,7 +26,7 @@ const LogoImage = ({
           src="/images/logo.png"
           alt={alt}
           width={width}
-          height={width / 1.875}
+          height={!height ? width / 1.875 : height}
         />
       </MuiLink>
     </Link>
