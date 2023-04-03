@@ -51,4 +51,7 @@
     width: 320px;
     height: 213px;
   }
+  .thumbs {
+    padding: 0 50px;
+  }
 }

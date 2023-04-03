@@ -50,7 +50,6 @@
 
 @media (max-width: 1024px) {
   .camperDetailsSection {
-    display: flex;
     flex-direction: column;
     align-items: center;
   }
@@ -63,11 +62,12 @@
   }
   .camperDetailsBox {
     padding: 0;
-    position: relative;
+    position: static;
     max-height: none;
     max-width: 100%;
     border: none;
     box-shadow: none;
+    animation: none;
     z-index: 0;
   }
 }
