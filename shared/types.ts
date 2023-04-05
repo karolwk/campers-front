@@ -101,3 +101,32 @@ export type PrivacyPage = {
   pageSubtitle: string;
   mainContent: string;
 };
+
+export interface BlogEntry {
+  name: string;
+  headerImage: string;
+  created_on: { seconds: number };
+  updated_on: { seconds: number };
+  status: string;
+  urlSlug: string;
+  content: BlogEntryContent[];
+  readTime: string;
+  metaTitle: string;
+  metaDescription: string;
+}
+
+export type BlogEntryContent = BlogEntryImages | BlogEntryText | BlogHeaderText;
+
+interface BlogEntryImages {
+  type: 'images';
+  value: string;
+}
+
+interface BlogEntryText {
+  type: 'text';
+  value: string;
+}
+interface BlogHeaderText {
+  type: 'header';
+  value: string;
+}
