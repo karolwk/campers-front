@@ -7,6 +7,7 @@ export const navLinks = [
     name: 'O nas',
     url: '/#about',
   },
+
   {
     name: 'Kampery',
     url: '/kampery',
@@ -24,6 +25,10 @@ export const navLinks = [
 
 export const footerLinks = [
   ...navLinks.slice(0, -1),
+  {
+    name: 'Blog',
+    url: '/blog',
+  },
   { name: 'Polityka Prywatności', url: '/polityka-prywatnosci' },
   ...navLinks.slice(navLinks.length - 1),
 ];
