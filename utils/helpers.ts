@@ -1,4 +1,5 @@
 import uniq from 'lodash/uniq';
+import { BlogEntry } from '../shared/types';
 
 export const formatPhone = (number: string, nospace = false): string => {
   // leaves only numbers
@@ -68,3 +69,50 @@ export const splitAmenities = (amenities: string) => {
 
   return substrings.map((substring) => substring.trim());
 };
+
+// Sorting blogposts in date order from newest to oldest
+export const sortBlogPosts = (objectsArray: BlogEntry[]) => {
+  return objectsArray.sort(
+    (a, b) => b.created_on.seconds - a.created_on.seconds
+  );
+};
+
+// Make polish date format from timestamp
+export const makeDateFromTimeStamp = (timestamp: number) => {
+  const date = new Date(timestamp * 1000);
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  } as const;
+  return date.toLocaleDateString('pl-PL', options);
+};
+
+// Return slice of Array containing specified size of elements for page
+
+export function paginate(array: any[], pageSize: number, pageNumber: number) {
+  return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+}
+
+// Cutting text to match 160 chars
+
+export function cutText(text: string): string {
+  if (text.length <= 160) {
+    return text;
+  }
+  const shortenedText = text.slice(0, 160);
+  const lastSpaceIndex = shortenedText.lastIndexOf(' ');
+  if (lastSpaceIndex !== -1) {
+    return shortenedText.slice(0, lastSpaceIndex) + '...';
+  }
+  return shortenedText + '...';
+}
+
+// Testing function
+export function getRandomDateInYear(year: number) {
+  const start = new Date(year, 0, 1); // January 1st of the specified year
+  const end = new Date(year + 1, 0, 1); // January 1st of the following year
+  const randomTime =
+    start.getTime() + Math.random() * (end.getTime() - start.getTime());
+  return Math.floor(randomTime / 1000); // convert milliseconds to seconds
+}
