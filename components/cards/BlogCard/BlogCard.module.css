@@ -1,0 +1,14 @@
+.blogBox {
+  min-width: 250px;
+}
+
+.thumbImageBox {
+  border-radius: 5px 5px 0 0;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.textBox {
+  padding: 0.7rem;
+}
