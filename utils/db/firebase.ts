@@ -2,13 +2,15 @@ import { initializeApp } from 'firebase/app';
 import {
   DocumentSnapshot,
   getFirestore,
+  query,
   QuerySnapshot,
+  where,
 } from 'firebase/firestore';
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-import { Camper } from '../../shared/types';
+import { BlogEntry, Camper, MainPageData } from '../../shared/types';
 
 const firebaseConfig = {
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -95,6 +97,30 @@ export const getCamperCollection = async () => {
 
   return campersList;
 };
+
+//Get all documents from Blog collection without ones that are not published
+
+export const getBlogCollection = async () => {
+  const blogRef = collection(db, process.env.FIREBASE_DB_BLOG as string);
+  const q = query(blogRef, where('status', '==', 'published'));
+  const blogSnapshot = await getDocs(q);
+  const blogData = blogSnapshot.docs.map((doc) => doc.data());
+
+  // We need to reparse to JSON because of potencial error with Next.js serializing objects
+  return JSON.parse(JSON.stringify(blogData)) as BlogEntry[];
+};
+
+// Get single post by the urlslug
+
+export const getPost = async (slug: string) => {
+  const blogRef = collection(db, process.env.FIREBASE_DB_BLOG as string);
+  const q = query(blogRef, where('urlSlug', '==', slug));
+  const postSnap = await getDocs(q);
+  const postData = postSnap.docs.pop()?.data();
+
+  return JSON.parse(JSON.stringify(postData)) as BlogEntry;
+};
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
