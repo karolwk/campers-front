@@ -27,7 +27,7 @@ export const footerLinks = [
   ...navLinks.slice(0, -1),
   {
     name: 'Blog',
-    url: '/blog',
+    url: '/blog/strona/1',
   },
   { name: 'Polityka Prywatności', url: '/polityka-prywatnosci' },
   ...navLinks.slice(navLinks.length - 1),
