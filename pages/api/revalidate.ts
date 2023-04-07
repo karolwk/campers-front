@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import axios from 'axios';
+import { getBlogCollection } from '../../utils/db/firebase';
 
 type Data =
   | {
@@ -47,6 +48,15 @@ export default async function handler(
 
     if (req.body.data.search(/polityka-prywatnosci/) >= 0) {
       await res.revalidate('/kontakt');
+    }
+
+    if (req.body.data.search(/blog/) >= 0) {
+      const posts = await getBlogCollection();
+      await Promise.all(
+        Array.from({ length: Math.ceil(posts.length / 12) }, async (_, i) => {
+          await res.revalidate(`/blog/strona/${i + 1}`);
+        })
+      );
     }
 
     return res.json({ revalidated: true });
