@@ -31,7 +31,7 @@ const formSchema = object({
   // Regex for polish phone numbers and empty string
   phone: string()
     .regex(
-      /^(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}$/,
+      /^(\(?\+[\d]+\)?[ -]?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}?$|^$/,
       'Nieprawidłowy numer telefonu'
     )
     .optional(),
