@@ -11,6 +11,8 @@ import CamperCard from '../components/cards/CamperCard/CamperCard';
 import styles from '../styles/Kampery.module.css';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import { Animate } from '../components/animations/Animate/Animate';
+import reverse from 'lodash/reverse';
+
 interface OtherProps {
   campers: Camper[];
 }
@@ -35,7 +37,7 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
         <Grid2 container spacing={5} marginY="2rem">
           {campers.map((camper, index) => (
             <Grid2 key={camper.name} xs={12} sm={6} md={4}>
-              <Animate.SlideFromRihght
+              <Animate.FadeUp
                 component={Box}
                 transition="all 1s "
                 transitionDelay={
@@ -44,7 +46,7 @@ const Kampery: NextPage<OtherProps> = ({ campers }) => {
                 height="100%"
               >
                 <CamperCard camper={camper} />
-              </Animate.SlideFromRihght>
+              </Animate.FadeUp>
             </Grid2>
           ))}
         </Grid2>
@@ -65,7 +67,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 
   return {
     props: {
-      campers: campers,
+      campers: reverse(campers),
     },
   };
 });
