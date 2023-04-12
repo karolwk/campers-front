@@ -21,6 +21,8 @@ import Link from 'next/link';
 import { Animate } from '../components/animations/Animate/Animate';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import BoxWithBackground from '../components/ui/BoxWithBackground/BoxWithBackground';
+import reverse from 'lodash/reverse';
+
 type HomeProps = {
   mainPage: MainPageData;
   campers: Camper[];
@@ -178,7 +180,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   return {
     props: {
       mainPage: mainPage,
-      campers: campers,
+      campers: reverse(campers),
     },
   };
 });
