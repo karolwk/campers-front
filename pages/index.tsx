@@ -31,7 +31,7 @@ type HomeProps = {
 const Home: NextPage<HomeProps> = ({ campers, mainPage }) => {
   return (
     <Layout
-      metaTitle="Kampery na wynajem Kraków - zacznij swoją własną przygodę!"
+      metaTitle="Wynajem kampera Kraków - wypożyczalnia"
       metaDescription="Wynajem kamperów Kraków - zapraszamy do naszej wypożyczalni, gdzie znajdziesz nowoczesne i wygodne pojazdy, doskonale wyposażone i gotowe na każdą przygodę."
     >
       <Box component="section" className={styles.mainImageSection}>
