@@ -10,5 +10,10 @@
 }
 
 .textBox {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 10rem;
   padding: 0.7rem;
 }
