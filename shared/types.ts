@@ -35,6 +35,8 @@ export interface MainPageData {
   campersTitle: string;
   campersDescription: string;
   faq: FaqMainPage[];
+  metaTitle: string;
+  metaDescription: string;
 }
 
 export interface CamperTechnicals {
