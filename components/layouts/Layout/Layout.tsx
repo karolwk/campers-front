@@ -8,6 +8,7 @@ type Props = {
   children: React.ReactNode;
   metaTitle: string;
   metaDescription: string;
+  metaNoFollow?: boolean;
   pageTitle?: string;
   pageSubtitle?: string;
 };
@@ -16,6 +17,7 @@ const Layout = ({
   children,
   metaTitle,
   metaDescription,
+  metaNoFollow = false,
   pageTitle,
   pageSubtitle,
 }: Props) => {
@@ -23,6 +25,7 @@ const Layout = ({
     <div className={styles.container}>
       <Head>
         <title>{metaTitle}</title>
+        {metaNoFollow && <meta name="robots" content="noindex, follow" />}
         <meta name="description" content={metaDescription} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
