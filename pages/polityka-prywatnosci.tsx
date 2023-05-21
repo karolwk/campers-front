@@ -17,6 +17,7 @@ const PolitykaPrywatnosci: NextPage<Props> = ({ appProp }) => {
     <Layout
       metaTitle={appProp.metaTitle}
       metaDescription={appProp.metaDescription}
+      metaNoFollow={true}
       pageTitle={appProp.pagetitle}
       pageSubtitle={appProp.pageSubtitle}
     >
