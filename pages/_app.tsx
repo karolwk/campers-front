@@ -1,4 +1,3 @@
-import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import NavBar from '../components/nav/NavBar/NavBar';
 import { navLinks } from '../shared/links';
@@ -7,6 +6,7 @@ import { wrapper } from '../store/store';
 import { Provider } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from '../styles/theme';
+import '../styles/globals.css';
 
 function MyApp({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
