@@ -4,7 +4,7 @@ import { object, string, TypeOf, boolean } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormTextInput from '../FormTextInput/FormTextInput';
 import { Box, Link as MuiLink, Slide, Typography } from '@mui/material';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import styles from './ContactForm.module.css';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import LoadingButton from '@mui/lab/LoadingButton';

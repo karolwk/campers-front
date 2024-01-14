@@ -6,7 +6,7 @@ import { fetchPageData, getBlogCollection } from '../../../utils/db/firebase';
 import { PageDataState, BlogEntry } from '../../../shared/types';
 import { Container, Pagination, Divider, Box } from '@mui/material';
 import { paginate, sortBlogPosts } from '../../../utils/helpers';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import BlogCard from '../../../components/cards/BlogCard/BlogCard';
 import { useRouter } from 'next/router';
 

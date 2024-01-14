@@ -19,7 +19,7 @@ import CamperCard from '../components/cards/CamperCard/CamperCard';
 import FaqAccordion from '../components/ui/FaqAccordion/FaqAccordion';
 import Link from 'next/link';
 import { Animate } from '../components/animations/Animate/Animate';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import BoxWithBackground from '../components/ui/BoxWithBackground/BoxWithBackground';
 import reverse from 'lodash/reverse';
 
