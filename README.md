@@ -1,34 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Table of contents
 
-## Getting Started
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### The challenge
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build a full-stack application utilizing Firebase as the database to create a campervan renting website that allows users to view available campervans, as well as a blog section. The goal of this project is to not only create a functional and user-friendly application, but also to optimize it for search engines to achieve the highest SEO scores possible.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Screenshots
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![Screenshot of the website](./screenshot.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Links
 
-## Learn More
+- Live Site URL: [Add live site URL here](https://www.example.com)
 
-To learn more about Next.js, take a look at the following resources:
+## My process
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Built with
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- CSS Modules
+- React
+- Next.js
+- Redux Toolkit
+- Next-Redux-Wrapper
+- Jest
+- Material UI
+- React-Hook-Form
+- React-Markdown
+- Zod
 
-## Deploy on Vercel
+### What I learned
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+During this project, I learned how to use Next.js and Next-Redux-Wrapper to create a server-side rendered React application with a global state management system. I also gained more experience working with Material UI for styling and React-Hook-Form for form validation. Additionally, I learned how to use Jest for testing and Zod for data validation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Continued development
+
+To continue the development of this full-stack application, there are several features that can be added to enhance the user experience and improve the functionality of the platform.
+
+Filter and Sorting: Implement filters to allow users to easily sort and narrow down the available campervans based on their preferences, such as price range, location, number of seats, or specific amenities.
+
+Availability Calendar: Create a calendar that displays the availability of each campervan, allowing users to see which dates are already reserved and which ones are still available. This can also help prevent double bookings and ensure that the user's desired rental dates are available.
+
+Payment Processing: Integrate a secure payment system into the platform to allow users to easily make reservations and pay for their rental online. This can include options for various payment methods and currencies.
+
+### Useful resources
+
+- [Next.js documentation](https://nextjs.org/docs) - The official documentation for Next.js
+- [Redux Toolkit documentation](https://redux-toolkit.js.org/) - The official documentation for Redux Toolkit
+- [React-Hook-Form documentation](https://react-hook-form.com/) - The official documentation for React-Hook-Form
+- [Zod documentation](https://github.com/vriad/zod) - The GitHub repository for Zod, a TypeScript-first schema validation library
+- [Material UI documentation](https://mui.com/) - The official documentation for Material UI
