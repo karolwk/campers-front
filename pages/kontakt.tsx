@@ -6,7 +6,7 @@ import db, { fetchPageData } from '../utils/db/firebase';
 import { setEnt } from '../store/pageDataSlice';
 import { PageDataState, StatutPage } from '../shared/types';
 import { Container, Typography, Paper, Box, Button } from '@mui/material';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import styles from '../styles/Kontakt.module.css';
 import Map from '../components/ui/Map/Map';
 import ContactForm from '../components/forms/ContactForm/ContactForm';

@@ -9,7 +9,7 @@ import { Camper, PageDataState } from '../shared/types';
 import { Box, Container, Typography } from '@mui/material';
 import CamperCard from '../components/cards/CamperCard/CamperCard';
 import styles from '../styles/Kampery.module.css';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import { Animate } from '../components/animations/Animate/Animate';
 import reverse from 'lodash/reverse';
 
