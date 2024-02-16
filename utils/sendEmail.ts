@@ -28,7 +28,7 @@ export const sendEmail = async ({
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Formularz na stronie" <strona@kamperynawynajem.pl',
+    from: '"Kamperynawynajem.pl - Formularz na stronie" <strona@kamperynawynajem.pl>',
     replyTo,
     to,
     subject,
