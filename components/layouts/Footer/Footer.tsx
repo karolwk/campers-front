@@ -1,5 +1,5 @@
-import { Box, Typography, Container, Button, IconButton } from '@mui/material';
-import Image from 'next/image';
+import { Box, Container, Button, IconButton } from '@mui/material';
+
 import styles from './Footer.module.css';
 import React from 'react';
 import { useAppSelector } from '../../../hooks/reduxHooks';
@@ -12,9 +12,8 @@ import { Link as MuiLink } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import LogoImage from '../../../assets/LogoImage/LogoImage';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import ContactInfo from '../../ui/ContactInfo/ContactInfo';
 
 type Props = {};
