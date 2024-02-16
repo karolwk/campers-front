@@ -22,13 +22,13 @@ export const sendEmail = async ({
     secure: true, // true for 465, false for other ports
     auth: {
       user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASS,
+      pass: process.env.EMAIL_API,
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Formularz na stronie" <strona@kamperynawynajem.pl',
+    from: '"Kamperynawynajem.pl - Zapytanie z formularza kontaktowego" <strona@kamperynawynajem.pl>',
     replyTo,
     to,
     subject,
